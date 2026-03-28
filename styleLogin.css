@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-titles: 'Montserrat', sans-serif;
+    --font-text: 'Montserrat', sans-serif;
+
+    --color-general: #080014;
+    --color-tarjetas: #161616;
+    --color-texto-principal: #ffffff;
+    --color-texto-secundario: #a6a6a6;
+
+    --color-borde-tarjetas: #2a2a2a;
+    --color-borde-boton: #ffffff;
+
+    --gold: #c9a84c;
+    --navy: #0d1b2a;
+    --navy-mid: #152236;
+    --navy-light: #1e3050;
+    --white: #f5f0e8;
+    --muted: #8a9bb0;
+    --border: #2a3f5a;
+    --success: #27ae60;
+    --danger: #c0392b;
+    --radius: 12px;
+}
+
+body {
+    background-color: var(--color-general);
+    font-family: var(--font-text);
+    color: var(--color-texto-principal);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen-active {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.logo-login {
+    font-size: 2rem;
+    color: var(--gold);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.login-text {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.login-box h2 {
+    color: var(--white);
+    font-family: var(--font-titles);
+    margin-bottom: 1rem;
+}
+
+.alert-error {
+    background: rgba(192, 57, 43, 0.1);
+    color: #e74c3c;
+    border: 1px solid rgba(192, 57, 43, 0.2);
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    color: var(--white);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border);
+    background: var(--navy-light);
+    color: var(--white);
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.btn-ingresar {
+    width: 100%;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 1rem;
+}
+
+.btn-ingresar:hover {
+    background: #e8cc7e;
+    transform: translateY(-2px);
+}
+
+.login-footer {
+    margin-top: 2rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+.login-footer p {
+    margin: 0.2rem 0;
+}
