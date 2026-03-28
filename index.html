@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Celestial Stereo 104.1 FM — Sistema de Gestión Publicitaria</title>
+</head>
+<body>
+    <header>
+        <div class="topbar-brand">
+            🎙 Celestial <span>104.1 FM</span>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#" class="active-link">DASHBOARD</a></li>
+                <li><a href="#">CLIENTES</a></li>
+                <li><a href="#">ÓRDENES</a></li>
+                <li><a href="#">ANULADAS</a></li>
+                <li><a href="#">CONFIRMACIÓN</a></li>
+                <li><a href="#">ADMINISTRACIÓN</a></li>
+            </ul>
+        </nav>
+
+        <div class="boton-salir">
+            <button>Salir</button>
+        </div>
+    </header>
+
+    <section class="text-prin">
+        <div class="dashboard-container">
+            <div class="titulo-boton">
+                <h1>Dashboard</h1>
+                <p>Resumen de gestión publicitaria · viernes, 27 de marzo de 2026</p>
+            </div>
+            <button class="nueva-orden">+ NUEVA ORDEN </button>
+        </div>
+    </section>
+
+    <section class="kpis-container">
+        <div class="card">
+            <h2 class="kpi-value" id="ordenes">24</h2>
+            <span class="kpi-title">ÓRDENES ACTIVAS</span>
+            <div class="trend-badge positive" id="kpi-ordenes-activas">↑ 3 ESTA SEMANA</div>
+        </div>
+
+        <div class="card">
+            <h2 class="kpi-value" id="facturado">$12.4M</h2>
+            <span class="kpi-title">Facturado este mes</span>
+            <div class="trend-badge positive" id="kpi-facturado-mes">+18% vs anterior</div>
+        </div>
+
+        <div class="card">
+            <h2 class="kpi-value" id="clientes">8</h2>
+            <span class="kpi-title">Clientes activos</span>
+            <div class="trend-badge positive" id="kpi-clientes-activos">2 NUEVOS</div>
+        </div>
+
+        <div class="card">
+            <h2 class="kpi-value" id="anuladas">3</h2>
+            <span class="kpi-title">Órdenes anuladas</span>
+            <div class="trend-badge danger" id="kpi-odenes-anuladas">requieren revisión</div>
+        </div>
+    </section>
+
+    <main class="dashboard-grid">
+        <section class="recent-orders">
+            <div class="card-header">
+                <h3>Órdenes Recientes</h3>
+                <span>ÚLTIMAS 5</span>
+            </div>
+            
+            <table class="orders-table">
+                <thead>
+                    <tr>
+                        <th>N° ORDEN</th>
+                        <th>CLIENTE</th>
+                        <th>PRODUCTO</th>
+                        <th>VALOR</th>
+                        <th>ESTADO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>165</td>
+                        <td>Bancolombia</td>
+                        <td>Marcas</td>
+                        <td>$420.000</td>
+                        <td><span class="status-pill active">ACTIVA</span></td>
+                    </tr>
+                    <tr>
+                        <td>164</td>
+                        <td>Claro Colombia</td>
+                        <td>Promo Verano</td>
+                        <td>$380.000</td>
+                        <td><span class="status-pill active">ACTIVA</span></td>
+                    </tr>
+                    <tr>
+                        <td>163</td>
+                        <td>EPM</td>
+                        <td>Servicios</td>
+                        <td>$290.000</td>
+                        <td><span class="status-pill pending">PENDIENTE</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <aside class="recent-activity">
+            <div class="card-header">
+                <h3>Actividad Reciente</h3>
+            </div>
+            <p class="date-label">HOY</p>
+            
+            <div class="activity-feed">
+                <div class="activity-item">
+                    <div class="activity-text">
+                        <strong>Orden #165 generada</strong>
+                        <small>10:32 am · Bancolombia</small>
+                    </div>
+                    <span class="tag tag-new">NUEVA</span>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-text">
+                        <strong>Factura enviada</strong>
+                        <small>09:15 am · Claro Colombia</small>
+                    </div>
+                    <span class="tag tag-email">EMAIL</span>
+                </div>
+            </div>
+        </aside>
+    </main>
+</body>
+</html>
