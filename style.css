@@ -101,6 +101,7 @@ header .boton-salir button {
     padding: 2.5rem 2.4rem 1rem;
     max-width: 1400px;
     margin: 0 auto;
+    
 }
 
 .dashboard-container {
@@ -130,6 +131,20 @@ header .boton-salir button {
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
+}
+
+.nueva-orden a {
+    color: inherit;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem 0.8rem;
+    line-height: 1.2;
+}
+
+.nueva-orden a:hover {
+    text-decoration: none;
 }
 
 .nueva-orden:hover {
