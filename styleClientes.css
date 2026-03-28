@@ -350,6 +350,23 @@ header .boton-salir button {
     margin-left: 0.75rem;
 }
 
+.btn-limpiar {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--white);
+    border-radius: 8px;
+    padding: 0.8rem 1.25rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-limpiar:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
 @media (max-width: 900px) {
     .dashboard-container,
     .page-grid {
