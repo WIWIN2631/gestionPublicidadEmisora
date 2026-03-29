@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleAnuladas.css">
+    <title>Celestial Stereo 104.1 FM — Sistema de Gestión Publicitaria</title>
+</head>
+
+<body>
+    <header>
+        <div class="topbar-brand">
+            🎙 Celestial <span>104.1 FM</span>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">DASHBOARD</a></li>
+                <li><a href="clientes.html">CLIENTES</a></li>
+                <li><a href="ordenes.html">ÓRDENES</a></li>
+                <li><a href="anuladas.html" class="active-link">ANULADAS</a></li>
+                <li><a href="#">CONFIRMACIÓN</a></li>
+                <li><a href="administracion.html">ADMINISTRACIÓN</a></li>
+            </ul>
+        </nav>
+
+        <div class="boton-salir">
+            <button>Salir</button>
+        </div>
+    </header>
+
+    <section class="text-prin">
+        <div class="dashboard-container">
+            <div class="titulo-boton">
+                <h1>Anuladas</h1>
+                <p>Gestión de órdenes de publicidad anuladas</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="page-grid">
+        <div class="main-card">
+
+            <div class="tabs-container">
+                <button class="tab-link active" id="tab-lista">LISTA DE ANULADAS</button>
+                <button class="tab-link" id="tab-gestion">GESTIONAR ANULACIÓN</button>
+            </div>
+
+            <hr class="tab-separator">
+
+            <section id="section-lista" class="tab-content active">
+
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar por ID o cliente..." id="input-busqueda">
+                    <button type="button" class="btn-buscar">BUSCAR</button>
+                </div>
+
+                <table class="main-table">
+                    <thead>
+                        <tr>
+                            <th>ID ORDEN</th>
+                            <th>CLIENTE</th>
+                            <th>FECHA ANULACIÓN</th>
+                            <th>MOTIVO</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ORD-001</td>
+                            <td>Radio Regional Independiente L.</td>
+                            <td>2026-03-25</td>
+                            <td>Solicitud del cliente</td>
+                            <td class="acciones-cell">
+                                <button type="button" class="btn-action view">👁️</button>
+                                <button type="button" class="btn-action restore">↩️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ORD-005</td>
+                            <td>Bancolombia S.A.</td>
+                            <td>2026-03-20</td>
+                            <td>Error en la orden</td>
+                            <td class="acciones-cell">
+                                <button type="button" class="btn-action view">👁️</button>
+                                <button type="button" class="btn-action restore">↩️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ORD-012</td>
+                            <td>Claro Colombia S.A.S.</td>
+                            <td>2026-03-15</td>
+                            <td>Cancelación por falta de pago</td>
+                            <td class="acciones-cell">
+                                <button type="button" class="btn-action view">👁️</button>
+                                <button type="button" class="btn-action restore">↩️</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="section-gestion" class="tab-content">
+                <div class="registro-clientes-tex">
+                    <div class="titulo-clientes-registro">
+                        <h1>Gestionar Anulación</h1>
+                        <p>Módulo Celestial Stereo — Anuladas</p>
+                    </div>
+                </div>
+                <form class="form-registro">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>ID DE ORDEN</label>
+                            <input type="text" name="id_orden" placeholder="ORD-001" required>
+                        </div>
+                        <div class="form-group">
+                            <label>MOTIVO DE ANULACIÓN</label>
+                            <select name="motivo" required>
+                                <option value="">Seleccionar motivo</option>
+                                <option value="cliente">Solicitud del cliente</option>
+                                <option value="error">Error en la orden</option>
+                                <option value="pago">Falta de pago</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>COMENTARIOS</label>
+                            <textarea name="comentarios" placeholder="Detalles adicionales..." rows="3"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-save">ANULAR ORDEN</button>
+                    <button type="reset" class="btn-limpiar">LIMPIAR</button>
+                </form>
+            </section>
+        </div>
+    </main>
+    <script src="anuladas.js"></script>
+</body>
+
+</html>
