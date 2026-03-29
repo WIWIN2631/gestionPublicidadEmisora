@@ -446,10 +446,15 @@ input[type="checkbox"] {
 
 .doc-preview {
     background: #ffffff;
-    color: #1b1b1b;
+    color: #1f2b3a;
     border-radius: 10px;
-    padding: 1.5rem;
-    border: 1px solid #d7d7d7;
+    padding: 1.6rem;
+    border: 1px solid #d8dde5;
+}
+
+.doc-paper {
+    max-width: 760px;
+    margin: 0 auto;
 }
 
 .doc-logo {
@@ -457,39 +462,56 @@ input[type="checkbox"] {
     align-items: center;
     gap: 0.9rem;
     margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid #c8a24a;
 }
 
-.doc-logo span {
-    font-size: 1.5rem;
+.doc-logo-img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
 }
 
 .doc-logo-name {
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 
 .doc-logo-meta {
-    font-size: 0.8rem;
-    color: #545454;
+    font-size: 0.74rem;
+    color: #7a8088;
+    letter-spacing: 0.12em;
 }
 
-.doc-preview h3 {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    color: #111;
+.doc-title {
+    text-align: center;
+    font-size: 1.05rem;
+    letter-spacing: 0.11em;
+    margin: 1.05rem 0 1.2rem;
+    color: #1a2e45;
 }
 
 .doc-field {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px dashed #cfcfcf;
-    font-size: 0.9rem;
+    padding: 0.42rem 0;
+    border-bottom: 1px solid #e4e7ec;
+    font-size: 0.85rem;
 }
 
 .doc-field span {
-    color: #444;
+    color: #3f4b59;
+}
+
+.doc-field strong {
+    color: #1a2e45;
+}
+
+.doc-field-single {
+    justify-content: flex-start;
 }
 
 .doc-total {
@@ -509,28 +531,67 @@ input[type="checkbox"] {
     color: #555;
 }
 
-.doc-note {
-    font-size: 0.85rem;
-    color: #4b4b4b;
+.doc-total-box {
     margin-top: 1rem;
-    line-height: 1.45;
+    background: #f5f2ea;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.15rem;
+}
+
+.doc-total-box b {
+    color: #1a2e45;
+    font-size: 1.05rem;
+}
+
+.doc-total-box small {
+    color: #4e5561;
+    font-size: 0.82rem;
+    text-align: right;
+}
+
+.doc-note {
+    font-size: 0.83rem;
+    color: #4e5561;
+    margin-top: 1.15rem;
+    line-height: 1.35;
+    text-transform: uppercase;
+}
+
+.doc-note-intro,
+.doc-note-after {
+    text-transform: none;
+}
+
+.doc-note-intro {
+    margin-top: 0.2rem;
+    margin-bottom: 0.9rem;
+}
+
+.doc-note-after {
+    margin-top: 1rem;
 }
 
 .doc-signature {
-    margin-top: 2rem;
-    text-align: center;
+    margin-top: 1.8rem;
+    text-align: left;
     color: #2a2a2a;
+    border-top: 1px solid #d6d9de;
+    padding-top: 0.9rem;
 }
 
 .doc-signature p {
     font-weight: 700;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
 }
 
 .doc-signature small {
     display: block;
-    margin-top: 0.2rem;
-    color: #555;
+    margin-top: 0.15rem;
+    color: #555f6e;
 }
 
 /* RESPONSIVE */
@@ -563,5 +624,9 @@ input[type="checkbox"] {
     .doc-header {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .doc-paper {
+        max-width: 100%;
     }
 }
