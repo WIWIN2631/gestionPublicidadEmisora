@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styleClientes.css">
+    <link rel="stylesheet" href="styleAdmin.css">
     <title>Celestial Stereo 104.1 FM — Sistema de Gestión Publicitaria</title>
 </head>
 
@@ -21,7 +21,7 @@
                 <li><a href="ordenes.html">ÓRDENES</a></li>
                 <li><a href="#">ANULADAS</a></li>
                 <li><a href="#">CONFIRMACIÓN</a></li>
-                <li><a href="administracion.html">ADMINISTRACIÓN</a></li>
+                <li><a href="administracion.html" class="active-link">ADMINISTRACIÓN</a></li>
             </ul>
         </nav>
 
@@ -33,10 +33,10 @@
     <section class="text-prin">
         <div class="dashboard-container">
             <div class="titulo-boton">
-                <h1>Clientes</h1>
-                <p>Gestión de clientes publicitarios de la emisora</p>
+                <h1>Administración</h1>
+                <p>Gestión administrativa del sistema de publicidad</p>
             </div>
-            <button class="nueva-orden"> <a href="#">+ NUEVO CLIENTE</a></button>
+            <button class="nueva-orden"> <a href="#">+ NUEVO USUARIO</a></button>
         </div>
     </section>
 
@@ -44,8 +44,8 @@
         <div class="main-card">
 
             <div class="tabs-container">
-                <button class="tab-link active" id="tab-lista">LISTA DE CLIENTES</button>
-                <button class="tab-link" id="tab-registro">REGISTRAR CLIENTE</button>
+                <button class="tab-link active" id="tab-lista">LISTA DE USUARIOS</button>
+                <button class="tab-link" id="tab-registro">REGISTRAR USUARIO</button>
             </div>
 
             <hr class="tab-separator">
@@ -53,50 +53,42 @@
             <section id="section-lista" class="tab-content active">
 
                 <div class="search-bar">
-                    <input type="text" placeholder="Buscar por NIT o nombre..." id="input-busqueda">
+                    <input type="text" placeholder="Buscar por usuario o rol..." id="input-busqueda">
                     <button type="button" class="btn-buscar">BUSCAR</button>
                 </div>
 
                 <table class="main-table">
                     <thead>
                         <tr>
-                            <th>NIT</th>
-                            <th>NOMBRE</th>
-                            <th>DIRECCIÓN</th>
-                            <th>TELÉFONO</th>
-                            <th>CORREO</th>
+                            <th>USUARIO</th>
+                            <th>ROL</th>
+                            <th>ESTADO</th>
                             <th>ACCIONES</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>800185826-2</td>
-                            <td>Radio Regional Independiente L.</td>
-                            <td>Calle 12 #4-56</td>
-                            <td>312-555-0101</td>
-                            <td>radoregcional@reiltda.com</td>
+                            <td>admin</td>
+                            <td>Administrador</td>
+                            <td>Activo</td>
                             <td class="acciones-cell">
                                 <button type="button" class="btn-action edit">✏️</button>
                                 <button type="button" class="btn-action delete">🗑️</button>
                             </td>
                         </tr>
                         <tr>
-                            <td>860007738-4</td>
-                            <td>Bancolombia S.A.</td>
-                            <td>Av. El Dorado 68C-61</td>
-                            <td>300-555-0200</td>
-                            <td>mkt@bancolombia.com.co</td>
+                            <td>ventas</td>
+                            <td>Vendedor</td>
+                            <td>Activo</td>
                             <td class="acciones-cell">
                                 <button type="button" class="btn-action edit">✏️</button>
                                 <button type="button" class="btn-action delete">🗑️</button>
                             </td>
                         </tr>
                         <tr>
-                            <td>900073222-1</td>
-                            <td>Claro Colombia S.A.S.</td>
-                            <td>Carrera 7 #76-35</td>
-                            <td>301-555-0333</td>
-                            <td>publicidad@claro.com.co</td>
+                            <td>cliente1</td>
+                            <td>Cliente</td>
+                            <td>Inactivo</td>
                             <td class="acciones-cell">
                                 <button type="button" class="btn-action edit">✏️</button>
                                 <button type="button" class="btn-action delete">🗑️</button>
@@ -109,40 +101,44 @@
             <section id="section-registro" class="tab-content">
                 <div class="registro-clientes-tex">
                     <div class="titulo-clientes-registro">
-                        <h1>Registrar Nuevo Cliente</h1>
-                        <p>Módulo Celestial Stereo — Clientes</p>
+                        <h1>Registrar Nuevo Usuario</h1>
+                        <p>Módulo Celestial Stereo — Administración</p>
                     </div>
                 </div>
                 <form class="form-registro">
                     <div class="form-grid">
                         <div class="form-group">
-                            <label>NIT / CÉDULA</label>
-                            <input type="text" name="nit" placeholder="584265775-1" required>
+                            <label>USUARIO</label>
+                            <input type="text" name="usuario" placeholder="nombreusuario" required>
                         </div>
                         <div class="form-group">
-                            <label>NOMBRE COMPLETO / RAZÓN SOCIAL</label>
-                            <input type="text" name="nombre" placeholder="Nombre de la empresa" required>
+                            <label>CONTRASEÑA</label>
+                            <input type="password" name="password" placeholder="Contraseña segura" required>
                         </div>
                         <div class="form-group">
-                            <label>DIRECCIÓN</label>
-                            <input type="text" name="direccion"  placeholder="calle 20 #42a-45">
+                            <label>ROL</label>
+                            <select name="rol" required>
+                                <option value="">Seleccionar rol</option>
+                                <option value="admin">Administrador</option>
+                                <option value="vendedor">Vendedor</option>
+                                <option value="cliente">Cliente</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label>TELÉFONO DE CONTACTO</label>
-                            <input type="tel" name="telefono" placeholder="300-555-0000">
-                        </div>
-                        <div class="form-group">
-                            <label>CORREO ELECTRÓNICO</label>
-                            <input type="email" name="correo" placeholder="contacto@empresa.com">
+                            <label>ESTADO</label>
+                            <select name="estado" required>
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                            </select>
                         </div>
                     </div>
-                    <button type="submit" class="btn-save">GUARDAR CLIENTE</button>
+                    <button type="submit" class="btn-save">GUARDAR USUARIO</button>
                     <button type="reset" class="btn-limpiar">LIMPIAR</button>
                 </form>
             </section>
         </div>
     </main>
-    <script src="clientes.js"></script>
+    <script src="administracion.js"></script>
 </body>
 
 </html>
