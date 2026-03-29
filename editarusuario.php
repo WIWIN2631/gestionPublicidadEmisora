@@ -1,6 +1,15 @@
 <?php
-include("funciones/verificarsuperadmin.php");
+session_start();
 include("funciones/bd.php");
+
+// 🚫 VALIDAR SUPERADMIN
+if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['rol'] !== 'superadmin') {
+    echo "<script>
+        alert('No tienes permisos de superadministrador');
+        window.location.href='administracion.php';
+    </script>";
+    exit();
+}
 
 if (!isset($_GET['id'])) {
     die("ID no especificado");
@@ -24,9 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $rol = $_POST['rol'];
 
-    // 🚨 PROTECCIÓN: evitar modificar superadmin (opcional pero recomendado)
+    // 🚨 PROTECCIÓN: evitar modificar superadmin
     if ($usuario['rol'] === 'superadmin') {
-        die("No se puede modificar un superadmin");
+        echo "<script>
+            alert('No se puede modificar un superadmin');
+            window.location.href='administracion.php';
+        </script>";
+        exit();
     }
 
     $stmt = mysqli_prepare($conexionBd, 
@@ -36,7 +49,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_stmt_bind_param($stmt, "si", $rol, $id);
 
     if (mysqli_stmt_execute($stmt)) {
-        header("Location: administracion.php");
+        echo "<script>
+            alert('Rol actualizado correctamente');
+            window.location.href='administracion.php';
+        </script>";
         exit();
     } else {
         echo "Error al actualizar";

@@ -23,14 +23,20 @@ if (!isset($_SESSION['usuario'])) {
             🎙 Celestial <span>104.1 FM</span>
         </div>
 
-        <nav>
+        <nav> 
             <ul>
                 <li><a href="index.php" class="active-link">DASHBOARD</a></li>
                 <li><a href="clientes.php">CLIENTES</a></li>
                 <li><a href="ordenes.php">ÓRDENES</a></li>
                 <li><a href="anuladas.php">ANULADAS</a></li>
-                <li><a href="confirmacion.php">CONFIRMACIÓN</a></li>
-                <li><a href="administracion.php">ADMINISTRACIÓN</a></li>
+
+                <?php if(isset($_SESSION['usuario']) && 
+                        ($_SESSION['usuario']['rol'] === 'admin' || $_SESSION['usuario']['rol'] === 'superadmin')): ?>
+                    
+                    <li><a href="confirmacion.php">CONFIRMACIÓN</a></li>
+                    <li><a href="administracion.php">ADMINISTRACIÓN</a></li>
+
+                <?php endif; ?>
             </ul>
         </nav>
 

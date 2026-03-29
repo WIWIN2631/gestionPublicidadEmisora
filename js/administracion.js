@@ -116,4 +116,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     markActiveNavLink();
+
+    // ✅ CONFIRMAR ELIMINACIÓN (CORRECTAMENTE DENTRO DEL DOMContentLoaded)
+    document.querySelectorAll('.btn-eliminar').forEach(boton => {
+        boton.addEventListener('click', function(e) {
+
+            const nombre = this.getAttribute('data-nombre');
+
+            const confirmacion = confirm(
+                `⚠️ Estás a punto de eliminar al usuario:\n\n${nombre}\n\n¿Deseas continuar?`
+            );
+
+            if (!confirmacion) {
+                e.preventDefault(); // cancela la redirección
+            }
+        });
+    });
+
 });
