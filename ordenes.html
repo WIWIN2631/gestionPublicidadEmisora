@@ -209,24 +209,67 @@
                             </div>
                         </div>
                         <hr class="section-divider" />
-                            <div class="value-display" id="valor-display">$0</div>
-                            <div style="font-size:0.72rem;color:var(--muted);margin-top:0.4rem;letter-spacing:0.1em">
-                                VALOR TOTAL DE LA ORDEN</div>
+                        <div class="value-display" id="valor-display">$0</div>
+                        <div style="font-size:0.72rem;color:var(--muted);margin-top:0.4rem;letter-spacing:0.1em">
+                            VALOR TOTAL DE LA ORDEN</div>
+                    </div>
+                    <div style="display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:1.2rem">
+                        <button class="btn btn-gold"> Guardar Orden</button>
+                        <button class="btn btn-success"> Generar Factura</button>
+                        <button class="btn btn-info"> Generar Certificación</button>
+                        <button class="btn btn-danger"> Anular Orden</button>
+                        <button class="btn btn-outline"> Limpiar</button>
+                    </div>
+                </form>
+                <button type="submit" class="btn-save">GUARDAR CLIENTE</button>
+                <button class="btn-limpiar">LIMPIAR</button>
+            </section>
+
+            <section id="factura" class="" style="display:none">
+                <div id="tab-factura" class="tab-content">
+                    <div class="page-header" style="margin-bottom:1rem">
+                        <div>
+                            <h1 style="font-size:1.3rem">Generar Factura</h1>
+                            <p>Vista previa del documento listo para impresión</p>
                         </div>
-                        <div style="display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:1.2rem">
-                            <button class="btn btn-gold"> Guardar Orden</button>
-                            <button class="btn btn-success"> Generar Factura</button>
-                            <button class="btn btn-info"> Generar Certificación</button>
-                            <button class="btn btn-danger" > Anular Orden</button>
-                            <button class="btn btn-outline" > Limpiar</button>
+                        <button class="btn btn-gold" onclick="window.print()">🖨 Imprimir</button>
+                    </div>
+                    <div class="doc-preview">
+                        <div class="doc-logo">
+                            <span class="radio-wave">📻</span>
+                            <div>
+                                <div class="doc-logo-name">Corporación Juan Valdez de Santa Rosa de Cabal</div>
+                                <div class="doc-logo-freq">CELESTIAL STEREO 104.1 FM · NIT 890.001.901-1</div>
+                            </div>
+                        </div>
+                        <h2>Factura de Publicidad Radial</h2>
+                        <div class="doc-field"><span>Fecha:</span><strong>07 de mayo de 2014</strong></div>
+                        <div class="doc-field"><span>Publicidad Radial — Transmitida en la emisora Celestial Stereo
+                                104.1 FM</span></div>
+                        <div class="doc-field"><span>Orden de Publicidad No.:</span><strong>165</strong></div>
+                        <div class="doc-field"><span>Transmisión:</span><strong>03/03/2014 — 31/03/2014</strong></div>
+                        <div class="doc-field"><span>Cliente:</span><strong>BANCOLOMBIA</strong></div>
+                        <div class="doc-field"><span>Producto:</span><strong>MARCAS</strong></div>
+                        <div class="doc-field"><span>Cuñas diarias:</span><strong>6</strong></div>
+                        <div class="doc-field"><span>Días de pauta:</span><strong>LUNES A VIERNES</strong></div>
+                        <div class="doc-field"><span>Horarios:</span><strong>8:00, 10:00, 12:00, 14:00, 16:00,
+                                19:00</strong></div>
+                        <div class="doc-total">
+                            <b>TOTAL: $420.000</b><br />
+                            <small>CUATROCIENTOS VEINTE MIL PESOS M/CTE</small>
+                        </div>
+                        <p style="font-size:0.8rem;color:#555;margin-top:1rem">
+                            FAVOR HACER CHEQUE Y/O TRANSFERENCIA A CORPORACIÓN JUAN VALDEZ DE SANTA ROSA DE CABAL,
+                            IDENTIFICADA CON NIT No. 890.001.901-1.<br />
+                            Y DEPOSITAR EN EL BANCO DE BOGOTÁ A LA CUENTA CORRIENTE No. 512-01020-8.
+                        </p>
+                        <div class="doc-sig">
+                            <p>HÉCTOR ARIEL ALARCON CASPIO</p>
+                            <p>Director Emisora Comunitaria</p>
                         </div>
                     </div>
-                    <button type="submit" class="btn-save">GUARDAR CLIENTE</button>
-                    <button class="btn-limpiar">LIMPIAR</button>
-                </form>
+                </div>
             </section>
-            </section>
-        </div>
     </main>
     <script src="ordenes.js"></script>
 </body>
