@@ -1,14 +1,13 @@
 // 1. Esperamos a que el HTML cargue totalmente
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 2. Seleccionamos los botones por su ID (los que tú creaste)
+    // 2. Seleccionamos los botones por su ID
     const btnLista = document.getElementById('tab-lista');
-    const btnRegistro = document.getElementById('tab-registro');
-    const btnNuevoTop = document.querySelector('.nueva-orden'); // El botón dorado de arriba
+    const btnGestion = document.getElementById('tab-gestion');
 
     // 3. Seleccionamos las secciones de contenido
     const sectionLista = document.getElementById('section-lista');
-    const sectionRegistro = document.getElementById('section-registro');
+    const sectionGestion = document.getElementById('section-gestion');
 
     // 4. Función para cambiar de pestaña
     function cambiarTab(seccionAMostrar, seccionAOcultar, botonActivo, botonInactivo) {
@@ -22,18 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 5. Escuchamos los clics en los botones
-    btnLista.addEventListener('click', () => {
-        cambiarTab(sectionLista, sectionRegistro, btnLista, btnRegistro);
-    });
+    if (btnLista && btnGestion && sectionLista && sectionGestion) {
+        btnLista.addEventListener('click', () => {
+            cambiarTab(sectionLista, sectionGestion, btnLista, btnGestion);
+        });
 
-    btnRegistro.addEventListener('click', () => {
-        cambiarTab(sectionRegistro, sectionLista, btnRegistro, btnLista);
-    });
-
-    // Bonus: El botón dorado "+ NUEVO CLIENTE" también debe llevar al registro
-    if(btnNuevoTop) {
-        btnNuevoTop.addEventListener('click', () => {
-            cambiarTab(sectionRegistro, sectionLista, btnRegistro, btnLista);
+        btnGestion.addEventListener('click', () => {
+            cambiarTab(sectionGestion, sectionLista, btnGestion, btnLista);
         });
     }
 

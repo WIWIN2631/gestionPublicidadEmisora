@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
     margin: 0;
@@ -9,56 +9,38 @@
 :root {
     --font-titles: 'Montserrat', sans-serif;
     --font-text: 'Montserrat', sans-serif;
-
     --color-general: #080014;
-    --color-tarjetas: #161616;
     --color-texto-principal: #ffffff;
     --color-texto-secundario: #a6a6a6;
-
-    --color-borde-tarjetas: #2a2a2a;
-    --color-borde-boton: #ffffff;
-
     --gold: #c9a84c;
-    --navy: #0d1b2a;
     --navy-mid: #152236;
     --navy-light: #1e3050;
     --white: #f5f0e8;
     --muted: #8a9bb0;
     --border: #2a3f5a;
-    --success: #27ae60;
     --danger: #c0392b;
-    --radius: 12px;
 }
 
+/* ESTILOS BASE */
 body {
     background-color: var(--color-general);
     font-family: var(--font-text);
     color: var(--color-texto-principal);
-    margin: 0;
-    padding: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.screen-active {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
+/* CARD */
 .login-box {
     background: var(--navy-mid);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: 12px;
     padding: 2rem;
     width: 100%;
     max-width: 400px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .logo-login {
@@ -80,6 +62,7 @@ body {
     margin-bottom: 1rem;
 }
 
+/* ALERTA DE ERROR */
 .alert-error {
     background: rgba(192, 57, 43, 0.1);
     color: #e74c3c;
@@ -90,9 +73,9 @@ body {
     font-size: 0.8rem;
 }
 
+/* FORMULARIO */
 .input-group {
     margin-bottom: 1rem;
-    text-align: left;
 }
 
 .input-group label {
@@ -119,10 +102,11 @@ body {
     border-color: var(--gold);
 }
 
+/* BOTON INGRESO */
 .btn-ingresar {
     width: 100%;
     background: var(--gold);
-    color: var(--navy);
+    color: var(--navy-mid);
     border: none;
     padding: 0.8rem;
     border-radius: 8px;
@@ -137,6 +121,7 @@ body {
     transform: translateY(-2px);
 }
 
+/* FOOTER DEL LOGIN */
 .login-footer {
     margin-top: 2rem;
     color: var(--muted);

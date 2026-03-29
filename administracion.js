@@ -22,15 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 5. Escuchamos los clics en los botones
-    btnLista.addEventListener('click', () => {
-        cambiarTab(sectionLista, sectionRegistro, btnLista, btnRegistro);
-    });
+    if (btnLista && btnRegistro && sectionLista && sectionRegistro) {
+        btnLista.addEventListener('click', () => {
+            cambiarTab(sectionLista, sectionRegistro, btnLista, btnRegistro);
+        });
 
-    btnRegistro.addEventListener('click', () => {
-        cambiarTab(sectionRegistro, sectionLista, btnRegistro, btnLista);
-    });
+        btnRegistro.addEventListener('click', () => {
+            cambiarTab(sectionRegistro, sectionLista, btnRegistro, btnLista);
+        });
+    }
 
-    // Bonus: El botón dorado "+ NUEVO CLIENTE" también debe llevar al registro
+    // Bonus: El botón dorado "+ NUEVO USUARIO" también debe llevar al registro
     if(btnNuevoTop) {
         btnNuevoTop.addEventListener('click', () => {
             cambiarTab(sectionRegistro, sectionLista, btnRegistro, btnLista);

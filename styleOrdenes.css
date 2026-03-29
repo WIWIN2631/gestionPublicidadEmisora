@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
     margin: 0;
@@ -9,17 +9,10 @@
 :root {
     --font-titles: 'Montserrat', sans-serif;
     --font-text: 'Montserrat', sans-serif;
-
     --color-general: #080014;
-    --color-tarjetas: #161616;
     --color-texto-principal: #ffffff;
     --color-texto-secundario: #a6a6a6;
-
-    --color-borde-tarjetas: #2a2a2a;
-    --color-borde-boton: #ffffff;
-
     --gold: #c9a84c;
-    --navy: #0d1b2a;
     --navy-mid: #152236;
     --navy-light: #1e3050;
     --white: #f5f0e8;
@@ -27,17 +20,17 @@
     --border: #2a3f5a;
     --success: #27ae60;
     --danger: #c0392b;
-    --radius: 12px;
 }
 
+/* ESTILOS BASE */
 body {
     background-color: var(--color-general);
     font-family: var(--font-text);
     color: var(--color-texto-principal);
-    margin: 0;
     padding-bottom: 40px;
 }
 
+/* HEADER / NAVBAR */
 header {
     display: flex;
     align-items: center;
@@ -76,8 +69,7 @@ header nav ul li a {
     transition: 0.3s;
 }
 
-header nav ul li a:hover,
-header nav ul li a.active-link {
+header nav ul li a:hover {
     color: var(--white);
     border-bottom: 2px solid var(--gold);
     padding-bottom: 22px;
@@ -93,6 +85,7 @@ header .boton-salir button {
     font-size: 0.8rem;
 }
 
+/* HEADER */
 .text-prin {
     padding: 2.5rem 2.4rem 1rem;
     max-width: 1400px;
@@ -117,6 +110,7 @@ header .boton-salir button {
     margin-top: 5px;
 }
 
+/* MAIN CONTAINER */
 .page-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -129,10 +123,11 @@ header .boton-salir button {
 .main-card {
     background: var(--navy-mid);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: 12px;
     padding: 1.8rem;
 }
 
+/* TABS */
 .tabs-container {
     display: flex;
     gap: 0.75rem;
@@ -153,7 +148,7 @@ header .boton-salir button {
 
 .tab-link.active {
     background: var(--gold);
-    color: var(--navy);
+    color: var(--navy-mid);
     border-color: var(--gold);
     font-weight: bold;
 }
@@ -164,6 +159,16 @@ header .boton-salir button {
     margin-bottom: 1.5rem;
 }
 
+/* TAB CONTENT */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* LISTA ORDENES */
 .search-bar {
     display: flex;
     gap: 1rem;
@@ -182,7 +187,7 @@ header .boton-salir button {
 
 .btn-buscar {
     background: var(--gold);
-    color: var(--navy);
+    color: var(--navy-mid);
     border: none;
     padding: 0.8rem 1.2rem;
     border-radius: 6px;
@@ -195,9 +200,12 @@ header .boton-salir button {
     background: #e8cc7e;
 }
 
+/* TABLA DE ÓRDENES */
 .main-table {
     width: 100%;
     border-collapse: collapse;
+    overflow-x: auto;
+    display: block;
 }
 
 .main-table th {
@@ -245,6 +253,28 @@ header .boton-salir button {
     border-color: rgba(192, 57, 43, 0.40);
 }
 
+/* NUEVA ORDEN */
+.registro-clientes-tex {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.titulo-clientes-registro h1 {
+    margin: 0;
+    font-family: var(--font-titles);
+    color: var(--gold);
+    font-size: 1.8rem;
+}
+
+.titulo-clientes-registro p {
+    margin: 0.3rem 0 0;
+    color: var(--muted);
+}
+
+/* FORMULARIO */
 .form-registro {
     max-width: 900px;
     margin: 0 auto;
@@ -254,7 +284,6 @@ header .boton-salir button {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    margin-bottom: 2rem;
 }
 
 .form-group {
@@ -269,72 +298,28 @@ header .boton-salir button {
     font-weight: 600;
 }
 
-.form-group input,
-.form-group select {
+.form-group input, .form-group select,
+textarea {
     padding: 0.8rem;
     border: 1px solid var(--border);
     background: var(--navy-light);
     color: var(--white);
     border-radius: 6px;
     font-size: 0.9rem;
+    font-family: var(--font-text);
 }
 
-.form-group input:focus,
-.form-group select:focus {
+.form-group input:focus, .form-group select:focus, textarea:focus {
     outline: none;
     border-color: var(--gold);
-}
-
-.btn-save {
-    background: var(--gold);
-    color: var(--navy);
-    border: none;
-    padding: 0.8rem 2rem;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    width: 100%;
-    max-width: 220px;
-    margin: 0 auto;
-    display: block;
-}
-
-.btn-save:hover {
-    background: #e8cc7e;
-    transform: translateY(-2px);
-}
-
-footer {
-    margin-top: 2rem;
-    color: var(--muted);
-    font-size: 0.8rem;
-}
-
-/* Estilos nuevos para órdenes complejas */
-.section-divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 1rem 0;
 }
 
 textarea {
-    padding: 0.75rem;
-    border: 1px solid var(--border);
-    background: var(--navy-mid);
-    color: var(--white);
-    border-radius: 6px;
-    font-size: 0.9rem;
     min-height: 80px;
-    font-family: var(--font-text);
     resize: vertical;
 }
 
-textarea:focus {
-    outline: none;
-    border-color: var(--gold);
-}
-
+/* CHECKBOX */
 input[type="checkbox"] {
     width: 18px;
     height: 18px;
@@ -342,6 +327,14 @@ input[type="checkbox"] {
     accent-color: var(--gold);
 }
 
+/* DIVISORES */
+.section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1rem 0;
+}
+
+/* VALOR TOTAL DISPLAY */
 .value-display {
     font-size: 1.8rem;
     color: var(--gold);
@@ -349,6 +342,7 @@ input[type="checkbox"] {
     margin-bottom: 0.4rem;
 }
 
+/* BOTONES DEL FORMULARIO */
 .btn {
     padding: 0.7rem 1rem;
     border: none;
@@ -361,7 +355,7 @@ input[type="checkbox"] {
 
 .btn-gold {
     background: var(--gold);
-    color: var(--navy);
+    color: var(--navy-mid);
 }
 
 .btn-gold:hover {
@@ -424,34 +418,7 @@ input[type="checkbox"] {
     border-color: var(--gold);
 }
 
-.registro-clientes-tex {
-    background: var(--navy-light);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1rem;
-    margin-bottom: 1rem;
-}
-
-.titulo-clientes-registro h1 {
-    margin: 0;
-    font-family: var(--font-titles);
-    color: var(--gold);
-    font-size: 1.8rem;
-}
-
-.titulo-clientes-registro p {
-    margin: 0.3rem 0 0;
-    color: var(--muted);
-}
-
-.tab-content {
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
-}
-
+/* RESPONSIVE */
 @media (max-width: 900px) {
     .dashboard-container,
     .page-grid {
@@ -471,5 +438,10 @@ input[type="checkbox"] {
     .search-bar,
     .page-grid {
         padding: 1.2rem;
+    }
+
+    .main-table {
+        display: block;
+        overflow-x: auto;
     }
 }

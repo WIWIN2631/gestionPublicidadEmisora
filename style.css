@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
     margin: 0;
@@ -7,19 +6,15 @@
     box-sizing: border-box;
 }
 
-
 :root {
     --font-titles: 'Montserrat', sans-serif;
     --font-text: 'Montserrat', sans-serif;
-
     --color-general: #080014;
     --color-tarjetas: #161616;
     --color-texto-principal: #ffffff;
     --color-texto-secundario: #a6a6a6;
-
     --color-borde-tarjetas: #2a2a2a;
     --color-borde-boton: #ffffff;
-
     --gold: #c9a84c;
     --navy: #0d1b2a;
     --navy-mid: #152236;
@@ -32,6 +27,7 @@
     --radius: 12px;
 }
 
+/* ESTILO BASE */
 body {
     background-color: var(--color-general);
     font-family: var(--font-text);
@@ -40,7 +36,7 @@ body {
     padding-bottom: 40px;
 }
 
-
+/* HEADER / NAVBAR */
 header {
     display: flex;
     align-items: center;
@@ -79,8 +75,7 @@ header nav ul li a {
     transition: 0.3s;
 }
 
-header nav ul li a:hover,
-header nav ul li a.active-link {
+header nav ul li a:hover, header nav ul li a.active-link {
     color: var(--white);
     border-bottom: 2px solid var(--gold);
     padding-bottom: 22px;
@@ -96,12 +91,11 @@ header .boton-salir button {
     font-size: 0.8rem;
 }
 
-
+/* DASHBOARD / HEADER */
 .text-prin {
     padding: 2.5rem 2.4rem 1rem;
     max-width: 1400px;
     margin: 0 auto;
-    
 }
 
 .dashboard-container {
@@ -139,12 +133,6 @@ header .boton-salir button {
     display: inline-block;
     width: 100%;
     height: 100%;
-    padding: 0.5rem 0.8rem;
-    line-height: 1.2;
-}
-
-.nueva-orden a:hover {
-    text-decoration: none;
 }
 
 .nueva-orden:hover {
@@ -152,7 +140,7 @@ header .boton-salir button {
     transform: translateY(-2px);
 }
 
-
+/* CARDS */
 .kpis-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -205,7 +193,7 @@ header .boton-salir button {
     border: 1px solid rgba(192, 57, 43, 0.2);
 }
 
-
+/* MAIN GRID */
 .dashboard-grid {
     display: grid;
     grid-template-columns: 1fr 340px;
@@ -215,8 +203,7 @@ header .boton-salir button {
     margin: 0 auto;
 }
 
-.recent-orders,
-.recent-activity {
+.recent-orders, .recent-activity {
     background: var(--navy-mid);
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -242,7 +229,7 @@ header .boton-salir button {
     color: var(--muted);
 }
 
-
+/* TABLA DE ORDENES */
 .orders-table {
     width: 100%;
     border-collapse: collapse;
@@ -279,7 +266,7 @@ header .boton-salir button {
     color: var(--gold);
 }
 
-
+/* ACTIVIDAD RECIENTE */
 .date-label {
     color: var(--muted);
     font-size: 0.75rem;
@@ -328,110 +315,4 @@ header .boton-salir button {
 .tag-email {
     background: rgba(41, 128, 185, 0.2);
     color: #3498db;
-}
-
-
-.contenedor {
-    width: 450px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(90, 92, 98) 0px 0px 0px 1px inset;
-    background-color: var(--color-tarjetas);
-    padding: 20px;
-}
-
-.contenedor h1 {
-    color: var(--color-texto-principal);
-    font-family: var(--font-titles);
-    font-size: 2.5rem;
-    text-align: left;
-    padding: 20px;
-}
-
-.contenedor p {
-    color: var(--color-texto-secundario);
-    font-family: var(--font-text);
-    font-size: 1.2rem;
-    text-align: left;
-    padding: 0px 20px 20px 20px;
-}
-
-
-.campo {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1px;
-}
-
-.campo label {
-    color: var(--color-texto-principal);
-    font-family: var(--font-text);
-    font-size: 1rem;
-    margin-bottom: 5px;
-    text-align: left;
-    margin-left: 20px;
-}
-
-.campo input {
-    padding: 10px;
-    border: 1px solid var(--color-borde-tarjetas);
-    background-color: var(--color-tarjetas);
-    font-family: var(--font-text);
-    font-size: 1rem;
-    text-align: left;
-    color: var(--color-texto-principal);
-    margin: 20px;
-}
-
-.campo select {
-    padding: 10px;
-    border: 1px solid var(--color-borde-tarjetas);
-    background-color: var(--color-tarjetas);
-    font-family: var(--font-text);
-    font-size: 1rem;
-    text-align: left;
-    color: var(--color-texto-secundario);
-    margin: 20px;
-}
-
-
-button {
-    width: 80%;
-    padding: 10px;
-    border: 1px solid var(--color-borde-boton);
-    background-color: var(--color-tarjetas);
-    color: var(--color-texto-principal);
-    font-family: var(--font-text);
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 10px;
-    margin-left: 45px;
-}
-
-
-button:hover {
-    background-color: var(--color-borde-boton);
-    color: var(--color-tarjetas);
-}
-
-
-.resultado {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid var(--color-borde-tarjetas);
-    background-color: var(--color-tarjetas);
-    color: var(--color-texto-principal);
-    font-family: var(--font-text);
-    font-size: 1rem;
-    text-align: left;
-}
-
-.resultado h2 {
-    font-family: var(--font-titles);
-    font-size: 1.5rem;
-    margin: 5px;
-}
-
-.resultado p {
-    margin: 5px;
-    font-family: var(--font-text);
-    color: var(--color-texto-principal);
 }
