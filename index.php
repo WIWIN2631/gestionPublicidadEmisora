@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -31,7 +40,7 @@
                 <span>Administrador</span>
             </div>
             <div class="boton-salir">
-                <button>Salir</button>
+                <button><a href="logout.php">Cerrar sesión</a></button>
             </div>
         </div>
     </header>
