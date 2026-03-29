@@ -25,12 +25,12 @@ if (!isset($_SESSION['usuario'])) {
 
         <nav>
             <ul>
-                <li><a href="index.html" class="active-link">DASHBOARD</a></li>
-                <li><a href="clientes.html">CLIENTES</a></li>
-                <li><a href="ordenes.html">ÓRDENES</a></li>
-                <li><a href="anuladas.html">ANULADAS</a></li>
-                <li><a href="Confirmacion.html">CONFIRMACIÓN</a></li>
-                <li><a href="administracion.html">ADMINISTRACIÓN</a></li>
+                <li><a href="index.php" class="active-link">DASHBOARD</a></li>
+                <li><a href="clientes.php">CLIENTES</a></li>
+                <li><a href="ordenes.php">ÓRDENES</a></li>
+                <li><a href="anuladas.php">ANULADAS</a></li>
+                <li><a href="confirmacion.php">CONFIRMACIÓN</a></li>
+                <li><a href="administracion.php">ADMINISTRACIÓN</a></li>
             </ul>
         </nav>
 
@@ -40,7 +40,7 @@ if (!isset($_SESSION['usuario'])) {
                 <span>Administrador</span>
             </div>
             <div class="boton-salir">
-                <button><a href="logout.php">Cerrar sesión</a></button>
+                <button><a href="funciones/logout.php">Salir</a></button>
             </div>
         </div>
     </header>

@@ -17,12 +17,12 @@
 
         <nav>
             <ul>
-                <li><a href="index.html">DASHBOARD</a></li>
-                <li><a href="clientes.html">CLIENTES</a></li>
-                <li><a href="ordenes.html">ÓRDENES</a></li>
-                <li><a href="anuladas.html">ANULADAS</a></li>
-            <li><a href="Confirmacion.html" class="active-link">CONFIRMACIÓN</a></li>
-                <li><a href="administracion.html">ADMINISTRACIÓN</a></li>
+                <li><a href="index.php">DASHBOARD</a></li>
+                <li><a href="clientes.php">CLIENTES</a></li>
+                <li><a href="ordenes.php">ÓRDENES</a></li>
+                <li><a href="anuladas.php">ANULADAS</a></li>
+            <li><a href="confirmacion.php" class="active-link">CONFIRMACIÓN</a></li>
+                <li><a href="administracion.php">ADMINISTRACIÓN</a></li>
             </ul>
         </nav>
 
@@ -32,7 +32,7 @@
                 <span>Administrador</span>
             </div>
             <div class="boton-salir">
-                <button>Salir</button>
+                <button><a href="funciones/logout.php">Salir</a></button>
             </div>
         </div>
     </header>

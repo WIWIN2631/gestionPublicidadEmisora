@@ -272,21 +272,34 @@ header .boton-salir button {
 }
 
 .btn-action {
-    background: transparent;
-    border: none;
-    padding: 0.5rem;
-    border-radius: 4px;
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.8rem;
     cursor: pointer;
-    font-size: 1rem;
+    border: 1px solid var(--border);
     transition: 0.3s;
 }
 
+/* EDITAR */
+.btn-action.edit {
+    background: #3498db;
+    color: white;
+}
+
 .btn-action.edit:hover {
-    background: rgba(201, 168, 76, 0.2);
+    background: #5dade2;
+}
+
+/* ELIMINAR */
+.btn-action.delete {
+    background: #c0392b;
+    color: white;
 }
 
 .btn-action.delete:hover {
-    background: rgba(192, 57, 43, 0.2);
+    background: #e74c3c;
 }
 
 .tab-content {

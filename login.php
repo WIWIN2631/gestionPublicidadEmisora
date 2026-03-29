@@ -73,6 +73,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <button type="submit" class="btn-ingresar">Ingresar</button>
+                <button type="button" class="btn-crear" onclick="window.location.href='registro.php'">
+                    Crear cuenta
+                </button>
             </form>
 
             <div class="login-footer">
