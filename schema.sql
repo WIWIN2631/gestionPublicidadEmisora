@@ -1,0 +1,59 @@
+CREATE DATABASE IF NOT EXISTS gestionpublicidademisora CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE gestionpublicidademisora;
+
+CREATE TABLE IF NOT EXISTS usuarios (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  usuario VARCHAR(60) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  rol ENUM('admin','invitado') NOT NULL DEFAULT 'invitado',
+  activo TINYINT(1) NOT NULL DEFAULT 1,
+  creado_en DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS clientes (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  nit VARCHAR(25) NOT NULL UNIQUE,
+  nombre VARCHAR(150) NOT NULL,
+  direccion VARCHAR(200) DEFAULT NULL,
+  telefono VARCHAR(30) DEFAULT NULL,
+  email VARCHAR(150) DEFAULT NULL,
+  activo TINYINT(1) NOT NULL DEFAULT 1,
+  creado_en DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS ordenes (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  numero_orden INT UNSIGNED NOT NULL UNIQUE,
+  numero_presupuesto INT UNSIGNED NULL,
+  cliente_id INT UNSIGNED NOT NULL,
+  producto VARCHAR(150) NOT NULL,
+  referencia VARCHAR(150) DEFAULT NULL,
+  fecha_orden DATE NOT NULL,
+  fecha_inicio DATE NOT NULL,
+  fecha_fin DATE NOT NULL,
+  cunas_diarias INT UNSIGNED NOT NULL DEFAULT 1,
+  duracion_seg INT UNSIGNED NOT NULL DEFAULT 30,
+  horarios_24h TINYINT(1) NOT NULL DEFAULT 1,
+  horarios TEXT NULL,
+  dias_pauta VARCHAR(200) NULL,
+  valor DECIMAL(14,2) NOT NULL DEFAULT 0,
+  estado ENUM('activa','pendiente','anulada') NOT NULL DEFAULT 'activa',
+  creado_por INT UNSIGNED NULL,
+  creado_en DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (cliente_id) REFERENCES clientes(id),
+  FOREIGN KEY (creado_por) REFERENCES usuarios(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS anulaciones (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  orden_id INT UNSIGNED NOT NULL,
+  motivo TEXT NOT NULL,
+  anulado_por INT UNSIGNED NULL,
+  anulado_en DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (orden_id) REFERENCES ordenes(id),
+  FOREIGN KEY (anulado_por) REFERENCES usuarios(id)
+) ENGINE=InnoDB;
+
+INSERT INTO usuarios (usuario, password, rol)
+SELECT 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin'
+WHERE NOT EXISTS (SELECT 1 FROM usuarios WHERE usuario = 'admin');
