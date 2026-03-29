@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/avif" href="img/logo.avif">
+    <link rel="stylesheet" href="styleOrdenes.css">
+    <title>Celestial Stereo 104.1 FM — Sistema de Gestión Publicitaria</title>
+</head>
+
+<body>
+    <header>
+        <div class="topbar-brand">
+            🎙 Celestial <span>104.1 FM</span>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">DASHBOARD</a></li>
+                <li><a href="clientes.html">CLIENTES</a></li>
+                <li><a href="ordenes.html">ÓRDENES</a></li>
+                <li><a href="anuladas.html">ANULADAS</a></li>
+                <li><a href="confirmacion.html">CONFIRMACIÓN</a></li>
+                <li><a href="administracion.html">ADMINISTRACIÓN</a></li>
+            </ul>
+        </nav>
+
+        <div class="boton-salir">
+            <button>Salir</button>
+        </div>
+    </header>
+
+    <div id="page-confirmacion" class="page">
+      <div class="page-header">
+        <div><h1>Confirmación de Orden</h1><p>Envío de confirmación al cliente por correo electrónico</p></div>
+      </div>
+      <div class="card" style="max-width:700px">
+        <div class="card-header">
+          <div class="card-title">Confirmación Orden <small>Módulo de notificación</small></div>
+        </div>
+        <div class="email-header-row">
+          <div class="form-group" style="flex:1;margin-bottom:0">
+            <label>NIT del Cliente</label>
+            <select>
+              <option>800185826-2 — Radio Regional Independiente L.</option>
+              <option>860007738-4 — Bancolombia S.A.</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex:1;margin-bottom:0">
+            <label>N° Orden</label>
+            <select><option>165</option><option>164</option><option>163</option></select>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:1rem">
+          <label>Correo del cliente</label>
+          <input type="email" value="radoregional@reiltda.com"/>
+        </div>
+        <div style="display:flex;gap:0.6rem;flex-wrap:wrap;margin:0.8rem 0">
+          <button class="btn btn-outline btn-sm">Nº Orden</button>
+          <button class="btn btn-outline btn-sm">Producto</button>
+          <button class="btn btn-outline btn-sm">Referencia</button>
+          <button class="btn btn-outline btn-sm">Fecha Vigencia</button>
+          <button class="btn btn-outline btn-sm">Cuñas día</button>
+          <button class="btn btn-outline btn-sm">Días Pautas</button>
+          <button class="btn btn-outline btn-sm">Horarios</button>
+        </div>
+        <div class="form-group">
+          <label>Cuerpo del mensaje</label>
+          <div class="confirm-email-body">
+            Cordial Saludo,<br/><br/>
+            A continuación relacionamos orden recibida.<br/><br/>
+            Orden N°: 165<br/>
+            Cuñas diarias: 6<br/>
+            Producto: BANCOLOMBIA<br/>
+            Referencia: MARCAS<br/>
+            Vigencia: 03/03/2014 — 31/03/2014<br/>
+            Horarios: 8:00, 10:00, 12:00, 14:00, 16:00, 19:00<br/>
+            Días de pauta: LUNES A VIERNES
+          </div>
+        </div>
+        <div style="display:flex;gap:0.8rem;margin-top:1rem">
+          <button class="btn btn-gold" >Enviar Confirmación</button>
+          <button class="btn btn-outline">Guardar como plantilla</button>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
