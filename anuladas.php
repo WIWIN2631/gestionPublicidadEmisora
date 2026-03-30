@@ -22,8 +22,8 @@ $ordenesAnuladas = mysqli_query($conexionBd, "
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/avif" href="../img/logo.avif">
-    <link rel="stylesheet" href="css/styleAnuladas.css">
+    <link rel="icon" type="image/avif" href="img/logo.avif">
+    <link rel="stylesheet" href="css/styleAnuladas.css?v=20260330c">
     <title>Celestial Stereo 104.1 FM — Órdenes Anuladas</title>
 </head>
 
@@ -35,10 +35,10 @@ $ordenesAnuladas = mysqli_query($conexionBd, "
 
     <nav> 
         <ul>
-            <li><a href="index.php" class="active-link">DASHBOARD</a></li>
+            <li><a href="index.php">DASHBOARD</a></li>
             <li><a href="clientes.php">CLIENTES</a></li>
             <li><a href="ordenes.php">ÓRDENES</a></li>
-            <li><a href="anuladas.php">ANULADAS</a></li>
+            <li><a href="anuladas.php" class="active-link">ANULADAS</a></li>
 
             <?php if(isset($_SESSION['usuario']) && 
                     ($_SESSION['usuario']['rol'] === 'admin' || $_SESSION['usuario']['rol'] === 'superadmin')): ?>
@@ -100,37 +100,39 @@ $ordenesAnuladas = mysqli_query($conexionBd, "
                 <button type="button" class="btn-buscar">BUSCAR</button>
             </div>
 
-            <table class="main-table">
-                <thead>
-                    <tr>
-                        <th>ID ORDEN</th>
-                        <th>CLIENTE</th>
-                        <th>FECHA ANULACIÓN</th>
-                        <th>MOTIVO</th>
-                        <th style="display:none;">COMENTARIOS</th> <!-- columna oculta -->
-                        <th>ACCIONES</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php while($o = mysqli_fetch_assoc($ordenesAnuladas)): ?>
-                    <tr>
-                        <td><?= $o['numero_orden'] ?></td>
-                        <td><?= $o['nombre_cliente'] ?></td>
-                        <td><?= date("Y-m-d H:i", strtotime($o['fecha_anulacion'])) ?></td>
-                        <td><?= $o['motivo'] ?></td>
-                        <td style="display:none;"><?= $o['comentarios'] ?></td> <!-- datos ocultos -->
-                        <td class="acciones-cell">
-                            <a href="revisar.php?orden=<?= $o['numero_orden'] ?>" class="btn-action view">Revisar</a>
-                            <button type="button" class="btn-action restore" onclick="window.location.href='restaurarorden.php?orden=<?= $o['numero_orden'] ?>'">↩Restaurar</button>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="main-table">
+                    <thead>
+                        <tr>
+                            <th>ID ORDEN</th>
+                            <th>CLIENTE</th>
+                            <th>FECHA ANULACIÓN</th>
+                            <th>MOTIVO</th>
+                            <th style="display:none;">COMENTARIOS</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php while($o = mysqli_fetch_assoc($ordenesAnuladas)): ?>
+                        <tr>
+                            <td><?= $o['numero_orden'] ?></td>
+                            <td><?= $o['nombre_cliente'] ?></td>
+                            <td><?= date("Y-m-d H:i", strtotime($o['fecha_anulacion'])) ?></td>
+                            <td><?= $o['motivo'] ?></td>
+                            <td style="display:none;"><?= $o['comentarios'] ?></td>
+                            <td class="acciones-cell">
+                                <a href="revisar.php?orden=<?= $o['numero_orden'] ?>" class="btn-action view">Revisar</a>
+                                <button type="button" class="btn-action restore" onclick="window.location.href='restaurarorden.php?orden=<?= $o['numero_orden'] ?>'">↩ Restaurar</button>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </div>
 </main>
 
-<script src="js/anuladas.js"></script>
+<script src="js/anuladas.js?v=20260330c"></script>
 </body>
 </html>

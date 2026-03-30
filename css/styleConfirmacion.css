@@ -84,6 +84,11 @@ header .boton-salir button {
     font-size: 0.8rem;
 }
 
+header .boton-salir button a {
+    color: inherit;
+    text-decoration: none;
+}
+
 .header-actions {
     display: flex;
     align-items: center;
@@ -374,18 +379,37 @@ header .boton-salir button {
 }
 
 @media (max-width: 900px) {
-    .dashboard-container,
-    .page-grid {
+    header {
+        height: auto;
+        padding: 1rem;
         flex-direction: column;
         gap: 1rem;
+    }
+
+    header nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.9rem 1.2rem;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .dashboard-container {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
     }
 
     .form-grid-confirmacion {
         grid-template-columns: 1fr;
     }
 
-    header {
-        padding: 0 1rem;
+    .confirmacion-actions .btn-save {
+        width: 100%;
     }
 
     .text-prin,

@@ -52,21 +52,38 @@ $stmt->close();
             <li><a href="index.php">DASHBOARD</a></li>
             <li><a href="clientes.php">CLIENTES</a></li>
             <li><a href="ordenes.php">ÓRDENES</a></li>
-            <li><a href="anuladas.php">ANULADAS</a></li>
+            <li><a href="anuladas.php" class="active-link">ANULADAS</a></li>
+            <?php if(isset($_SESSION['usuario']) && ($_SESSION['usuario']['rol'] === 'admin' || $_SESSION['usuario']['rol'] === 'superadmin')): ?>
             <li><a href="confirmacion.php">CONFIRMACIÓN</a></li>
             <li><a href="administracion.php">ADMINISTRACIÓN</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
     <div class="header-actions">
-        <div class="admin-status is-active">
+        <div class="admin-status is-active" aria-label="Estado del usuario">
             <span class="status-dot"></span>
-            <span><?= $_SESSION['usuario']['nombre'] ?></span>
+            <span>
+                <?php
+                $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
+                $rol = $_SESSION['usuario']['rol'] ?? 'usuario';
+                echo htmlspecialchars($nombre) . ' (' . htmlspecialchars(ucfirst($rol)) . ')';
+                ?>
+            </span>
         </div>
         <div class="boton-salir">
             <button><a href="funciones/logout.php">Salir</a></button>
         </div>
     </div>
 </header>
+
+<section class="text-prin">
+    <div class="dashboard-container">
+        <div class="titulo-boton">
+            <h1>Revisión de Orden Anulada</h1>
+            <p>Detalle de la anulación registrada para la orden <?= $orden['numero_orden'] ?></p>
+        </div>
+    </div>
+</section>
 
 <main class="page-grid">
     <div class="main-card">
@@ -91,7 +108,7 @@ $stmt->close();
                     <label>MOTIVO DE ANULACIÓN</label>
                     <input type="text" value="<?= $orden['motivo'] ?>" readonly>
                 </div>
-                <div class="form-group">
+                <div class="form-group full-width">
                     <label>COMENTARIOS</label>
                     <textarea rows="3" readonly><?= $orden['comentarios'] ?></textarea>
                 </div>
@@ -100,7 +117,9 @@ $stmt->close();
                     <input type="text" value="<?= date("Y-m-d H:i", strtotime($orden['fecha_anulacion'])) ?>" readonly>
                 </div>
             </div>
-            <a href="anuladas.php" class="btn-limpiar">Volver a Anuladas</a>
+            <div class="form-actions">
+                <a href="anuladas.php" class="btn-limpiar">Volver a Anuladas</a>
+            </div>
         </form>
     </div>
 </main>

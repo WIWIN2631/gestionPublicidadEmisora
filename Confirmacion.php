@@ -21,16 +21,20 @@ while ($row = $resultadoOrdenes->fetch_assoc()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/avif" href="../img/logo.avif">
-    <link rel="stylesheet" href="../css/styleConfirmacion.css">
+    <link rel="icon" type="image/avif" href="img/logo.avif">
+    <link rel="stylesheet" href="css/styleConfirmacion.css">
     <title>Celestial Stereo 104.1 FM — Sistema de Gestión Publicitaria</title>
 </head>
 
 <body>
     <header>
+    <div class="topbar-brand">
+        🎙 Celestial <span>104.1 FM</span>
+    </div>
+
     <nav> 
         <ul>
-            <li><a href="index.php" class="active-link">DASHBOARD</a></li>
+            <li><a href="index.php">DASHBOARD</a></li>
             <li><a href="clientes.php">CLIENTES</a></li>
             <li><a href="ordenes.php">ÓRDENES</a></li>
             <li><a href="anuladas.php">ANULADAS</a></li>
@@ -38,7 +42,7 @@ while ($row = $resultadoOrdenes->fetch_assoc()) {
             <?php if(isset($_SESSION['usuario']) && 
                     ($_SESSION['usuario']['rol'] === 'admin' || $_SESSION['usuario']['rol'] === 'superadmin')): ?>
                 
-                <li><a href="confirmacion.php">CONFIRMACIÓN</a></li>
+                <li><a href="confirmacion.php" class="active-link">CONFIRMACIÓN</a></li>
                 <li><a href="administracion.php">ADMINISTRACIÓN</a></li>
 
             <?php endif; ?>

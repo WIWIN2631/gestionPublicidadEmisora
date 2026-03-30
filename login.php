@@ -43,9 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/avif" href="../img/logo.avif">
+    <link rel="icon" type="image/avif" href="img/logo.avif">
     <title>Login - Celestial Stereo 104.1 FM</title>
-    <link rel="stylesheet" href="../css/styleLogin.css">
+    <link rel="stylesheet" href="css/styleLogin.css">
 </head>
 
 <body>

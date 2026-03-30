@@ -47,7 +47,7 @@ $rolUsuario = $_SESSION['usuario']['rol'] ?? '';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/avif" href="../img/logo.avif">
+    <link rel="icon" type="image/avif" href="img/logo.avif">
     <link rel="stylesheet" href="css/styleOrdenes.css">
     <link rel="stylesheet" href="css/styleImprimir.css">
     <title>Certificación de Orden - Celestial Stereo 104.1 FM</title>
@@ -63,9 +63,9 @@ $rolUsuario = $_SESSION['usuario']['rol'] ?? '';
 
     <nav> 
         <ul>
-            <li><a href="index.php" class="active-link">DASHBOARD</a></li>
+            <li><a href="index.php">DASHBOARD</a></li>
             <li><a href="clientes.php">CLIENTES</a></li>
-            <li><a href="ordenes.php">ÓRDENES</a></li>
+            <li><a href="ordenes.php" class="active-link">ÓRDENES</a></li>
             <li><a href="anuladas.php">ANULADAS</a></li>
 
             <?php if(isset($_SESSION['usuario']) && 

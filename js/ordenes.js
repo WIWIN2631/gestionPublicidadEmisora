@@ -1,19 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const btnLista = document.getElementById('tab-lista');
     const btnRegistro = document.getElementById('tab-registro');
-    const btnFactura = document.getElementById('tab-factura');
-    const btnCertificacion = document.getElementById('tab-certificacion');
-
     const sectionLista = document.getElementById('lista');
     const sectionRegistro = document.getElementById('registro');
-    const sectionFactura = document.getElementById('factura');
-    const sectionCertificacion = document.getElementById('certificacion');
 
-    const btnGoFactura = document.getElementById('btn-go-factura');
-    const btnGoCertificacion = document.getElementById('btn-go-certificacion');
-
-    const tabs = [btnLista, btnRegistro, btnFactura, btnCertificacion].filter(Boolean);
-    const sections = [sectionLista, sectionRegistro, sectionFactura, sectionCertificacion].filter(Boolean);
+    const tabs = [btnLista, btnRegistro].filter(Boolean);
+    const sections = [sectionLista, sectionRegistro].filter(Boolean);
 
     function inicializarVista() {
         if (!btnLista || !sectionLista) return;
@@ -45,33 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btnRegistro.addEventListener('click', () => activarTab(sectionRegistro, btnRegistro));
     }
 
-    if (btnFactura && sectionFactura) {
-        btnFactura.addEventListener('click', () => activarTab(sectionFactura, btnFactura));
-    }
-
-    if (btnCertificacion && sectionCertificacion) {
-        btnCertificacion.addEventListener('click', () => activarTab(sectionCertificacion, btnCertificacion));
-    }
-
-    if (btnGoFactura && btnFactura && sectionFactura) {
-        btnGoFactura.addEventListener('click', () => activarTab(sectionFactura, btnFactura));
-    }
-
-    if (btnGoCertificacion && btnCertificacion && sectionCertificacion) {
-        btnGoCertificacion.addEventListener('click', () => activarTab(sectionCertificacion, btnCertificacion));
-    }
-
-    const menuLinks = document.querySelectorAll('header nav ul li a');
-    const currentPath = window.location.pathname.split('/').pop().toLowerCase();
-
-    menuLinks.forEach(link => {
-        const href = (link.getAttribute('href') || '').toLowerCase();
-        if (href === currentPath || (href === 'index.html' && (currentPath === '' || currentPath === 'index.html'))) {
-            link.classList.add('active-link');
-        } else {
-            link.classList.remove('active-link');
-        }
-    });
  // ================= DIAS =================
     const checkDias = document.querySelectorAll('#dias-container input');
     const inputDias = document.getElementById('ord-dias');
@@ -136,19 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ================= FACTURA =================
-    const botonesFactura = document.querySelectorAll('.btn-action.factura');
-
-    botonesFactura.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const idOrden = btn.getAttribute('data-id');
-            if (!idOrden) return;
-
-            // Abrir PDF en nueva ventana
-            window.open(`facturar.php?id=${idOrden}`, '_blank');
-        });
-    });
-
     // ================= ANULAR ORDEN =================
     const botonesAnular = document.querySelectorAll('.btn-action.anular');
 
@@ -179,36 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Redirigir a script de anulación con parámetros
             window.location.href = `funciones/anularorden.php?id=${idOrden}&motivo=${encodeURIComponent(motivo)}&comentarios=${encodeURIComponent(comentarios)}`;
-        });
-    });
-    // ================= CERTIFICACIÓN =================
-    const botonesCertificacion = document.querySelectorAll('.btn-action.certificacion');
-
-    botonesCertificacion.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Obtener el ID de la orden desde el botón
-            // Necesitamos agregar el atributo data-id al botón de certificación
-            // Por ahora, buscaremos el ID desde la fila
-            const fila = btn.closest('tr');
-            const idOrden = btn.getAttribute('data-id');
-            
-            if (!idOrden) {
-                // Si no tiene data-id, intentamos obtenerlo de otra manera
-                // Buscamos el botón de factura en la misma fila que tiene data-id
-                const botonFactura = fila.querySelector('.btn-action.factura');
-                if (botonFactura) {
-                    const id = botonFactura.getAttribute('data-id');
-                    if (id) {
-                        window.open(`certificacion.php?id=${id}`, '_blank');
-                        return;
-                    }
-                }
-                alert('Error: No se pudo obtener el ID de la orden');
-                return;
-            }
-            
-            // Abrir certificación en nueva ventana
-            window.open(`certificacion.php?id=${idOrden}`, '_blank');
         });
     });
 });

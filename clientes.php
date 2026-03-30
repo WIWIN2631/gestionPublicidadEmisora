@@ -59,7 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/styleClientes.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/avif" href="img/logo.avif">
+    <link rel="stylesheet" href="css/styleClientes.css?v=20260330b">
     <title>Clientes</title>
 </head>
 
@@ -72,8 +74,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <nav> 
         <ul>
-            <li><a href="index.php" class="active-link">DASHBOARD</a></li>
-            <li><a href="clientes.php">CLIENTES</a></li>
+            <li><a href="index.php">DASHBOARD</a></li>
+            <li><a href="clientes.php" class="active-link" aria-current="page">CLIENTES</a></li>
             <li><a href="ordenes.php">ÓRDENES</a></li>
             <li><a href="anuladas.php">ANULADAS</a></li>
 
@@ -146,60 +148,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit" class="btn-buscar">BUSCAR</button>
         </form>
 
-        <table class="main-table">
-            <thead>
-                <tr>
-                    <th>NIT</th>
-                    <th>NOMBRE</th>
-                    <th>DIRECCIÓN</th>
-                    <th>TELÉFONO</th>
-                    <th>CORREO</th>
-                    <th>FECHA REGISTRO</th>
-                    <th>ACCIONES</th>
-                </tr>
-            </thead>
+        <div class="table-responsive">
+            <table class="main-table">
+                <thead>
+                    <tr>
+                        <th>NIT</th>
+                        <th>NOMBRE</th>
+                        <th>DIRECCIÓN</th>
+                        <th>TELÉFONO</th>
+                        <th>CORREO</th>
+                        <th>FECHA REGISTRO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                <?php while($fila = mysqli_fetch_assoc($resultado)): ?>
-                <tr>
-                    <td><?php echo $fila['nit']; ?></td>
-                    <td><?php echo $fila['nombre']; ?></td>
-                    <td><?php echo $fila['direccion']; ?></td>
-                    <td><?php echo $fila['telefono']; ?></td>
-                    <td><?php echo $fila['correo']; ?></td>
+                <tbody>
+                    <?php while($fila = mysqli_fetch_assoc($resultado)): ?>
+                    <tr>
+                        <td><?php echo $fila['nit']; ?></td>
+                        <td><?php echo $fila['nombre']; ?></td>
+                        <td><?php echo $fila['direccion']; ?></td>
+                        <td><?php echo $fila['telefono']; ?></td>
+                        <td><?php echo $fila['correo']; ?></td>
 
-                    <!-- 🆕 FECHA FORMATEADA -->
-                    <td>
-                        <?php 
-                        if (!empty($fila['fecha_registro'])) {
-                            echo date("d/m/Y", strtotime($fila['fecha_registro']));
-                        } else {
-                            echo "—";
-                        }
-                        ?>
-                    </td>
+                        <!-- 🆕 FECHA FORMATEADA -->
+                        <td>
+                            <?php 
+                            if (!empty($fila['fecha_registro'])) {
+                                echo date("d/m/Y", strtotime($fila['fecha_registro']));
+                            } else {
+                                echo "—";
+                            }
+                            ?>
+                        </td>
 
-                    <td class="acciones-cell">
-                        
-                        <!-- EDITAR -->
-                        <a class="btn-action edit" href="editarcliente.php?id=<?php echo $fila['id']; ?>">
-                            Editar
-                        </a>
+                        <td class="acciones-cell">
+                            <!-- EDITAR -->
+                            <a class="btn-action edit" href="editarcliente.php?id=<?php echo $fila['id']; ?>">
+                                Editar
+                            </a>
 
-                        <!-- ELIMINAR -->
-                        <a 
-                            class="btn-action delete btn-eliminar" 
-                            href="eliminarcliente.php?id=<?php echo $fila['id']; ?>"
-                            data-nombre="<?php echo $fila['nombre']; ?>"
-                        >
-                            Eliminar
-                        </a>
-
-                    </td>
-                </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+                            <!-- ELIMINAR -->
+                            <a 
+                                class="btn-action delete btn-eliminar" 
+                                href="eliminarcliente.php?id=<?php echo $fila['id']; ?>"
+                                data-nombre="<?php echo $fila['nombre']; ?>"
+                            >
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
 
     </section>
 
@@ -244,8 +246,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             </div>
 
-            <button type="submit" class="btn-save">GUARDAR CLIENTE</button>
-            <button type="reset" class="btn-limpiar">LIMPIAR</button>
+            <div class="form-actions">
+                <button type="submit" class="btn-save">GUARDAR CLIENTE</button>
+                <button type="reset" class="btn-limpiar">LIMPIAR</button>
+            </div>
 
         </form>
 
@@ -254,7 +258,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 </main>
 
-<script src="js/clientes.js"></script>
+<script src="js/clientes.js?v=20260330b"></script>
 
 </body>
 </html>

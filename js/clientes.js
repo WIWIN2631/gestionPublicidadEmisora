@@ -22,13 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 5. Escuchamos los clics en los botones
-    btnLista.addEventListener('click', () => {
-        cambiarTab(sectionLista, sectionRegistro, btnLista, btnRegistro);
-    });
+    if (btnLista && btnRegistro && sectionLista && sectionRegistro) {
+        btnLista.addEventListener('click', () => {
+            cambiarTab(sectionLista, sectionRegistro, btnLista, btnRegistro);
+        });
 
-    btnRegistro.addEventListener('click', () => {
-        cambiarTab(sectionRegistro, sectionLista, btnRegistro, btnLista);
-    });
+        btnRegistro.addEventListener('click', () => {
+            cambiarTab(sectionRegistro, sectionLista, btnRegistro, btnLista);
+        });
+    }
 
     // Bonus: El botón dorado "+ NUEVO CLIENTE" también debe llevar al registro
     if(btnNuevoTop) {
@@ -37,20 +39,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Marca el enlace activo de navegación según URL
-    function markActiveNavLink() {
-        const menuLinks = document.querySelectorAll('header nav ul li a');
-        const currentPath = window.location.pathname.split('/').pop();
-
-        menuLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href === currentPath || (href === 'index.html' && currentPath === '')) {
-                link.classList.add('active-link');
-            } else {
-                link.classList.remove('active-link');
-            }
-        });
-    }
-
-    markActiveNavLink();
 });

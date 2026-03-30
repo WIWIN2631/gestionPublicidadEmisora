@@ -64,37 +64,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/avif" href="img/logo.avif">
     <title>Editar usuario</title>
     <link rel="stylesheet" href="css/styleLogin.css">
 </head>
 
 <body>
-<div class="login-box">
+<div class="screen-active">
+    <div class="login-box">
+        <div class="logo-login">🎙 Celestial</div>
+        <div class="login-text">Stereo 104.1 FM · Gestión de usuarios</div>
+        <h2>Editar usuario</h2>
 
-    <h2>Editar usuario</h2>
+        <form method="POST">
 
-    <form method="POST">
+            <div class="input-group">
+                <label>Nombre</label>
+                <input type="text" value="<?php echo htmlspecialchars($usuario['nombre']); ?>" disabled>
+            </div>
 
-        <!-- SOLO VISUAL -->
-        <div class="input-group">
-            <label>Nombre</label>
-            <input type="text" value="<?php echo $usuario['nombre']; ?>" disabled>
+            <div class="input-group">
+                <label>Rol</label>
+                <select name="rol">
+                    <option value="usuario" <?php if($usuario['rol']==="usuario") echo "selected"; ?>>Usuario</option>
+                    <option value="admin" <?php if($usuario['rol']==="admin") echo "selected"; ?>>Admin</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-ingresar">Guardar cambios</button>
+            <button type="button" class="btn-crear" onclick="window.location.href='administracion.php'">Regresar</button>
+
+        </form>
+
+        <div class="login-footer">
+            <p>Actualización controlada de roles</p>
+            <p>Solo disponible para superadministrador</p>
         </div>
-
-        <!-- LO ÚNICO EDITABLE -->
-        <div class="input-group">
-            <label>Rol</label>
-            <select name="rol">
-                <option value="usuario" <?php if($usuario['rol']=="usuario") echo "selected"; ?>>Usuario</option>
-                <option value="admin" <?php if($usuario['rol']=="admin") echo "selected"; ?>>Admin</option>
-            </select>
-        </div>
-
-        <button type="submit" class="btn-ingresar">Guardar cambios</button>
-        <button type="button" class="btn-crear" onclick="window.location.href='administracion.php'">Regresar</button>
-
-    </form>
-
+    </div>
 </div>
 </body>
 </html>

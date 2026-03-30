@@ -73,8 +73,8 @@ $rolUsuario = $_SESSION['usuario']['rol'] ?? '';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/avif" href="../img/logo.avif">
-    <link rel="stylesheet" href="css/styleOrdenes.css">
+    <link rel="icon" type="image/avif" href="img/logo.avif">
+    <link rel="stylesheet" href="css/styleOrdenes.css?v=20260330b">
     <title>Celestial Stereo 104.1 FM — Sistema de Gestión Publicitaria</title>
 </head>
 
@@ -87,9 +87,9 @@ $rolUsuario = $_SESSION['usuario']['rol'] ?? '';
 
     <nav> 
         <ul>
-            <li><a href="index.php" class="active-link">DASHBOARD</a></li>
+            <li><a href="index.php">DASHBOARD</a></li>
             <li><a href="clientes.php">CLIENTES</a></li>
-            <li><a href="ordenes.php">ÓRDENES</a></li>
+            <li><a href="ordenes.php" class="active-link" aria-current="page">ÓRDENES</a></li>
             <li><a href="anuladas.php">ANULADAS</a></li>
 
             <?php if(isset($_SESSION['usuario']) && 
@@ -151,51 +151,53 @@ $rolUsuario = $_SESSION['usuario']['rol'] ?? '';
         <!-- LISTA -->
         <section id="lista" class="tab-content active">
 
-            <table class="main-table">
-                <thead>
-                    <tr>
-                        <th>N° Orden</th>
-                        <th>N° Presupuesto</th>
-                        <th>Cliente</th>
-                        <th>Producto</th>
-                        <th>Referencia</th>
-                        <th>Fecha Inicio</th>
-                        <th>Fecha Fin</th>
-                        <th>Cuñas/día</th>
-                        <th>Duración</th>
-                        <th>Valor</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <?php while($o = mysqli_fetch_assoc($ordenes)): ?>
+            <div class="table-responsive">
+                <table class="main-table">
+                    <thead>
                         <tr>
-                            <td><?= $o['numero_orden'] ?></td>
-                            <td><?= $o['numero_presupuesto'] ?></td>
-                            <td><?= $o['nombre_cliente'] ?></td>
-                            <td><?= $o['producto'] ?></td>
-                            <td><?= $o['referencia'] ?></td>
-                            <td><?= date("d/m/Y", strtotime($o['fecha_inicio'])) ?></td>
-                            <td><?= date("d/m/Y", strtotime($o['fecha_fin'])) ?></td>
-                            <td><?= $o['cunas_dia'] ?></td>
-                            <td><?= $o['duracion'] ?> seg</td>
-                            <td>$<?= number_format($o['valor'], 0, ',', '.') ?></td>
-                            <td><?= $o['estado'] ?? 'Activa' ?></td>
-                            <td class="acciones-cell">
-                                <button type="button" class="btn-action factura" data-id="<?= $o['id'] ?>">Factura</button>
-                                <button type="button" class="btn-action certificacion" data-id="<?= $o['id'] ?>">Certificación</button>
-                                <button type="button" class="btn-action anular" 
-                                        data-id="<?= $o['id'] ?>" 
-                                        data-rol="<?= $rolUsuario ?>">
-                                    Anular
-                                </button>
-                            </td>
+                            <th>N° Orden</th>
+                            <th>N° Presupuesto</th>
+                            <th>Cliente</th>
+                            <th>Producto</th>
+                            <th>Referencia</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th>Cuñas/día</th>
+                            <th>Duración</th>
+                            <th>Valor</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody>
+                        <?php while($o = mysqli_fetch_assoc($ordenes)): ?>
+                            <tr>
+                                <td><?= $o['numero_orden'] ?></td>
+                                <td><?= $o['numero_presupuesto'] ?></td>
+                                <td><?= $o['nombre_cliente'] ?></td>
+                                <td><?= $o['producto'] ?></td>
+                                <td><?= $o['referencia'] ?></td>
+                                <td><?= date("d/m/Y", strtotime($o['fecha_inicio'])) ?></td>
+                                <td><?= date("d/m/Y", strtotime($o['fecha_fin'])) ?></td>
+                                <td><?= $o['cunas_dia'] ?></td>
+                                <td><?= $o['duracion'] ?> seg</td>
+                                <td>$<?= number_format($o['valor'], 0, ',', '.') ?></td>
+                                <td><?= $o['estado'] ?? 'Activa' ?></td>
+                                <td class="acciones-cell">
+                                    <a class="btn-action factura" href="facturar.php?id=<?= $o['id'] ?>" target="_blank" rel="noopener noreferrer">Factura</a>
+                                    <a class="btn-action certificacion" href="certificacion.php?id=<?= $o['id'] ?>" target="_blank" rel="noopener noreferrer">Certificación</a>
+                                    <button type="button" class="btn-action anular" 
+                                            data-id="<?= $o['id'] ?>" 
+                                            data-rol="<?= $rolUsuario ?>">
+                                        Anular
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
 
         </section>
 
@@ -312,7 +314,7 @@ $rolUsuario = $_SESSION['usuario']['rol'] ?? '';
     </div>
 </main>
 
-<script src="js/ordenes.js"></script>
+<script src="js/ordenes.js?v=20260330b"></script>
 
 </body>
 </html>

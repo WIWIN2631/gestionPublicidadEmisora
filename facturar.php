@@ -152,7 +152,7 @@ $rolUsuario = $_SESSION['usuario']['rol'] ?? '';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/avif" href="../img/logo.avif">
+    <link rel="icon" type="image/avif" href="img/logo.avif">
     <link rel="stylesheet" href="css/styleOrdenes.css">
     <link rel="stylesheet" href="css/styleImprimir.css">
     <title>Factura - Celestial Stereo 104.1 FM</title>
@@ -169,23 +169,29 @@ $rolUsuario = $_SESSION['usuario']['rol'] ?? '';
         <ul>
             <li><a href="index.php">DASHBOARD</a></li>
             <li><a href="clientes.php">CLIENTES</a></li>
-            <li><a href="ordenes.php">ÓRDENES</a></li>
+            <li><a href="ordenes.php" class="active-link">ÓRDENES</a></li>
             <li><a href="anuladas.php">ANULADAS</a></li>
+            <?php if(isset($_SESSION['usuario']) && ($_SESSION['usuario']['rol'] === 'admin' || $_SESSION['usuario']['rol'] === 'superadmin')): ?>
             <li><a href="confirmacion.php">CONFIRMACIÓN</a></li>
             <li><a href="administracion.php">ADMINISTRACIÓN</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
 
     <div class="header-actions">
-        <div class="admin-status is-active">
+        <div class="admin-status is-active" aria-label="Estado del usuario">
             <span class="status-dot"></span>
-            <span><?= $_SESSION['usuario']['nombre'] ?></span>
+            <span>
+                <?php
+                $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
+                $rol = $_SESSION['usuario']['rol'] ?? 'usuario';
+                echo htmlspecialchars($nombre) . ' (' . htmlspecialchars(ucfirst($rol)) . ')';
+                ?>
+            </span>
         </div>
 
         <div class="boton-salir">
-            <a href="funciones/logout.php">
-                <button>Salir</button>
-            </a>
+            <button><a href="funciones/logout.php">Salir</a></button>
         </div>
     </div>
 </header>
