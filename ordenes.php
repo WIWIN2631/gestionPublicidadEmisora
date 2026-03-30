@@ -167,7 +167,7 @@ $rolUsuario = $_SESSION['usuario']['rol'] ?? '';
                             <td><?= $o['estado'] ?? 'Activa' ?></td>
                             <td class="acciones-cell">
                                 <button type="button" class="btn-action factura" data-id="<?= $o['id'] ?>">Factura</button>
-                                <button type="button" class="btn-action certificacion">Certificación</button>
+                                <button type="button" class="btn-action certificacion" data-id="<?= $o['id'] ?>">Certificación</button>
                                 <button type="button" class="btn-action anular" 
                                         data-id="<?= $o['id'] ?>" 
                                         data-rol="<?= $rolUsuario ?>">

@@ -1,15 +1,18 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
     exit();
 }
-if (!isset($_SESSION['usuario']) || 
-   ($_SESSION['usuario']['rol'] !== 'admin' && $_SESSION['usuario']['rol'] !== 'superadmin')) {
 
-    header("Location: index.php");
-    exit();
+include("funciones/bd.php");
+
+// Obtener todas las órdenes disponibles para llenar el select
+$ordenesDisponibles = [];
+$queryOrdenes = "SELECT numero_orden FROM ordenes ORDER BY numero_orden DESC";
+$resultadoOrdenes = $conexionBd->query($queryOrdenes);
+while ($row = $resultadoOrdenes->fetch_assoc()) {
+    $ordenesDisponibles[] = $row['numero_orden'];
 }
 ?>
 <!DOCTYPE html>
@@ -19,7 +22,7 @@ if (!isset($_SESSION['usuario']) ||
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/avif" href="../img/logo.avif">
-        <link rel="stylesheet" href="../css/styleConfirmacion.css">
+    <link rel="stylesheet" href="../css/styleConfirmacion.css">
     <title>Celestial Stereo 104.1 FM — Sistema de Gestión Publicitaria</title>
 </head>
 
@@ -35,7 +38,7 @@ if (!isset($_SESSION['usuario']) ||
                 <li><a href="clientes.php">CLIENTES</a></li>
                 <li><a href="ordenes.php">ÓRDENES</a></li>
                 <li><a href="anuladas.php">ANULADAS</a></li>
-            <li><a href="confirmacion.php" class="active-link">CONFIRMACIÓN</a></li>
+                <li><a href="confirmacion.php" class="active-link">CONFIRMACIÓN</a></li>
                 <li><a href="administracion.php">ADMINISTRACIÓN</a></li>
             </ul>
         </nav>
@@ -74,37 +77,33 @@ if (!isset($_SESSION['usuario']) ||
                     <div class="form-grid form-grid-confirmacion">
                         <div class="form-group">
                             <label>NIT DEL CLIENTE</label>
-                            <select id="confirm-cliente" required>
-                                <option value="">Seleccionar cliente</option>
-                                <option value="800185826-2">800185826-2 — Radio Regional Independiente L.</option>
-                                <option value="860007738-4">860007738-4 — Bancolombia S.A.</option>
-                                <option value="900073222-1">900073222-1 — Claro Colombia S.A.S.</option>
-                            </select>
+                            <input type="text" id="confirm-nit" readonly placeholder="Seleccione una orden">
                         </div>
 
                         <div class="form-group">
                             <label>N° ORDEN</label>
                             <select id="confirm-orden" required>
-                                <option value="165">165</option>
-                                <option value="164">164</option>
-                                <option value="163">163</option>
+                                <option value="">Seleccione una orden</option>
+                                <?php foreach ($ordenesDisponibles as $orden): ?>
+                                    <option value="<?php echo $orden; ?>"><?php echo $orden; ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
 
                         <div class="form-group full-width">
                             <label>CORREO DEL CLIENTE</label>
-                            <input type="email" id="confirm-correo" value="radoregional@reiltda.com" required>
+                            <input type="email" id="confirm-correo" required>
                         </div>
                     </div>
 
                     <div class="token-toolbar">
-                        <button type="button" class="token-btn" data-token="Orden N°: 165">N° Orden</button>
-                        <button type="button" class="token-btn" data-token="Producto: BANCOLOMBIA">Producto</button>
-                        <button type="button" class="token-btn" data-token="Referencia: MARCAS">Referencia</button>
-                        <button type="button" class="token-btn" data-token="Vigencia: 03/03/2014 — 31/03/2014">Fecha Vigencia</button>
-                        <button type="button" class="token-btn" data-token="Cuñas diarias: 6">Cuñas día</button>
-                        <button type="button" class="token-btn" data-token="Días de pauta: LUNES A VIERNES">Días Pautas</button>
-                        <button type="button" class="token-btn" data-token="Horarios: 8:00, 10:00, 12:00, 14:00, 16:00, 19:00">Horarios</button>
+                        <button type="button" class="token-btn" data-token="Orden N°: ">N° Orden</button>
+                        <button type="button" class="token-btn" data-token="Producto: ">Producto</button>
+                        <button type="button" class="token-btn" data-token="Referencia: ">Referencia</button>
+                        <button type="button" class="token-btn" data-token="Vigencia: ">Fecha Vigencia</button>
+                        <button type="button" class="token-btn" data-token="Cuñas diarias: ">Cuñas día</button>
+                        <button type="button" class="token-btn" data-token="Días de pauta: ">Días Pautas</button>
+                        <button type="button" class="token-btn" data-token="Horarios: ">Horarios</button>
                     </div>
 
                     <div class="form-group full-width">
@@ -118,20 +117,13 @@ if (!isset($_SESSION['usuario']) ||
 
 A continuación relacionamos la orden recibida.
 
-Orden N°: 165
-Cuñas diarias: 6
-Producto: BANCOLOMBIA
-Referencia: MARCAS
-Vigencia: 03/03/2014 — 31/03/2014
-Horarios: 8:00, 10:00, 12:00, 14:00, 16:00, 19:00
-Días de pauta: LUNES A VIERNES</textarea>
+</textarea>
                     </div>
 
                     <div class="confirmacion-status" id="confirmacion-status" aria-live="polite"></div>
 
                     <div class="confirmacion-actions">
                         <button type="submit" class="btn-save">ENVIAR CONFIRMACIÓN</button>
-                        <button type="button" class="btn-limpiar" id="btn-guardar-plantilla">GUARDAR COMO PLANTILLA</button>
                     </div>
                 </form>
 
@@ -141,7 +133,7 @@ Días de pauta: LUNES A VIERNES</textarea>
                     <div class="preview-mail">
                         <div class="preview-mail-top">
                             <span>Para:</span>
-                            <strong id="preview-correo">radoregional@reiltda.com</strong>
+                            <strong id="preview-correo">Seleccione una orden</strong>
                         </div>
                         <div class="preview-mail-top">
                             <span>Asunto:</span>
@@ -154,6 +146,125 @@ Días de pauta: LUNES A VIERNES</textarea>
         </div>
     </main>
 
-    <script src="../js/confirmacion.js"></script>
+    <script>
+        // Función para actualizar la vista previa
+        function actualizarVistaPrevia() {
+            const correo = document.getElementById('confirm-correo').value;
+            const asunto = document.getElementById('confirm-asunto').value;
+            const mensaje = document.getElementById('confirm-mensaje').value;
+            
+            document.getElementById('preview-correo').textContent = correo || 'No especificado';
+            document.getElementById('preview-asunto').textContent = asunto;
+            document.getElementById('preview-mensaje').innerHTML = mensaje.replace(/\n/g, '<br>');
+        }
+        
+        // Evento cuando se selecciona una orden
+        document.getElementById('confirm-orden').addEventListener('change', function() {
+            const numeroOrden = this.value;
+            
+            if (!numeroOrden) {
+                // Limpiar campos si no hay orden seleccionada
+                document.getElementById('confirm-nit').value = '';
+                document.getElementById('confirm-correo').value = '';
+                document.getElementById('confirm-mensaje').value = 'Cordial saludo,\n\nA continuación relacionamos la orden recibida.\n\n';
+                actualizarVistaPrevia();
+                return;
+            }
+            
+            // Mostrar mensaje de carga
+            const statusDiv = document.getElementById('confirmacion-status');
+            statusDiv.innerHTML = '<span style="color: blue;">Cargando datos de la orden...</span>';
+            
+            // Hacer petición AJAX para obtener los datos de la orden
+            fetch('funciones/obtenerdatosorden.php?numero_orden=' + numeroOrden)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta del servidor');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+                    
+                    console.log('Datos recibidos:', data); // Para depuración
+                    
+                    // Llenar el NIT
+                    document.getElementById('confirm-nit').value = data.nit_cliente || '';
+                    
+                    // Generar correo basado en el nombre del cliente
+                    let correoGenerado = '';
+                    if (data.nombre_cliente) {
+                        correoGenerado = data.nombre_cliente.toLowerCase().replace(/\s/g, '') + '@example.com';
+                    }
+                    document.getElementById('confirm-correo').value = correoGenerado;
+                    
+                    // Construir el mensaje con los datos de la orden
+                    const mensaje = `Cordial saludo,
+
+A continuación relacionamos la orden recibida.
+
+Orden N°: ${data.numero_orden}
+Producto: ${data.producto || ''}
+Referencia: ${data.referencia || ''}
+Vigencia: ${data.fecha_inicio || ''} — ${data.fecha_fin || ''}
+Cuñas diarias: ${data.cunas_dia || ''}
+Días de pauta: ${data.dias || ''}
+Horarios: ${data.horarios || ''}`;
+                    
+                    document.getElementById('confirm-mensaje').value = mensaje;
+                    
+                    // Actualizar los botones token con los datos reales
+                    const tokenBtns = document.querySelectorAll('.token-btn');
+                    tokenBtns.forEach(btn => {
+                        const currentToken = btn.getAttribute('data-token');
+                        if (currentToken.includes('Orden N°:')) {
+                            btn.setAttribute('data-token', `Orden N°: ${data.numero_orden}`);
+                        } else if (currentToken.includes('Producto:')) {
+                            btn.setAttribute('data-token', `Producto: ${data.producto || ''}`);
+                        } else if (currentToken.includes('Referencia:')) {
+                            btn.setAttribute('data-token', `Referencia: ${data.referencia || ''}`);
+                        } else if (currentToken.includes('Vigencia:')) {
+                            btn.setAttribute('data-token', `Vigencia: ${data.fecha_inicio || ''} — ${data.fecha_fin || ''}`);
+                        } else if (currentToken.includes('Cuñas diarias:')) {
+                            btn.setAttribute('data-token', `Cuñas diarias: ${data.cunas_dia || ''}`);
+                        } else if (currentToken.includes('Días de pauta:')) {
+                            btn.setAttribute('data-token', `Días de pauta: ${data.dias || ''}`);
+                        } else if (currentToken.includes('Horarios:')) {
+                            btn.setAttribute('data-token', `Horarios: ${data.horarios || ''}`);
+                        }
+                    });
+                    
+                    // Limpiar mensaje de estado
+                    statusDiv.innerHTML = '<span style="color: green;">Datos cargados correctamente</span>';
+                    setTimeout(() => {
+                        statusDiv.innerHTML = '';
+                    }, 3000);
+                    
+                    // Actualizar vista previa
+                    actualizarVistaPrevia();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    statusDiv.innerHTML = '<span style="color: red;">Error al cargar los datos: ' + error.message + '</span>';
+                    
+                    // Limpiar campos
+                    document.getElementById('confirm-nit').value = '';
+                    document.getElementById('confirm-correo').value = '';
+                    document.getElementById('confirm-mensaje').value = 'Cordial saludo,\n\nA continuación relacionamos la orden recibida.\n\n';
+                    actualizarVistaPrevia();
+                });
+        });
+        
+        // Eventos para actualizar vista previa
+        document.getElementById('confirm-correo').addEventListener('input', actualizarVistaPrevia);
+        document.getElementById('confirm-asunto').addEventListener('input', actualizarVistaPrevia);
+        document.getElementById('confirm-mensaje').addEventListener('input', actualizarVistaPrevia);
+        
+        // Inicializar vista previa
+        actualizarVistaPrevia();
+    </script>
 </body>
+
 </html>

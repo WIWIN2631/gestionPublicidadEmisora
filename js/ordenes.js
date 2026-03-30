@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!idOrden) return;
 
             // Abrir PDF en nueva ventana
-            window.open(`funciones/generarfactura.php?id=${idOrden}`, '_blank');
+            window.open(`facturar.php?id=${idOrden}`, '_blank');
         });
     });
 
@@ -179,6 +179,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Redirigir a script de anulación con parámetros
             window.location.href = `funciones/anularorden.php?id=${idOrden}&motivo=${encodeURIComponent(motivo)}&comentarios=${encodeURIComponent(comentarios)}`;
+        });
+    });
+    // ================= CERTIFICACIÓN =================
+    const botonesCertificacion = document.querySelectorAll('.btn-action.certificacion');
+
+    botonesCertificacion.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Obtener el ID de la orden desde el botón
+            // Necesitamos agregar el atributo data-id al botón de certificación
+            // Por ahora, buscaremos el ID desde la fila
+            const fila = btn.closest('tr');
+            const idOrden = btn.getAttribute('data-id');
+            
+            if (!idOrden) {
+                // Si no tiene data-id, intentamos obtenerlo de otra manera
+                // Buscamos el botón de factura en la misma fila que tiene data-id
+                const botonFactura = fila.querySelector('.btn-action.factura');
+                if (botonFactura) {
+                    const id = botonFactura.getAttribute('data-id');
+                    if (id) {
+                        window.open(`certificacion.php?id=${id}`, '_blank');
+                        return;
+                    }
+                }
+                alert('Error: No se pudo obtener el ID de la orden');
+                return;
+            }
+            
+            // Abrir certificación en nueva ventana
+            window.open(`certificacion.php?id=${idOrden}`, '_blank');
         });
     });
 });

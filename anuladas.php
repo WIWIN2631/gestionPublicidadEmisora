@@ -23,7 +23,7 @@ $ordenesAnuladas = mysqli_query($conexionBd, "
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/avif" href="../img/logo.avif">
-    <link rel="stylesheet" href="../css/styleAnuladas.css">
+    <link rel="stylesheet" href="css/styleAnuladas.css">
     <title>Celestial Stereo 104.1 FM — Órdenes Anuladas</title>
 </head>
 
@@ -68,7 +68,6 @@ $ordenesAnuladas = mysqli_query($conexionBd, "
     <div class="main-card">
         <div class="tabs-container">
             <button class="tab-link active" id="tab-lista">LISTA DE ANULADAS</button>
-            <button class="tab-link" id="tab-gestion">GESTIONAR ANULACIÓN</button>
         </div>
 
         <hr class="tab-separator">
@@ -87,57 +86,30 @@ $ordenesAnuladas = mysqli_query($conexionBd, "
                         <th>CLIENTE</th>
                         <th>FECHA ANULACIÓN</th>
                         <th>MOTIVO</th>
+                        <th style="display:none;">COMENTARIOS</th> <!-- columna oculta -->
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php while($o = mysqli_fetch_assoc($ordenesAnuladas)): ?>
-                <tr>
-                    <td><?= $o['numero_orden'] ?></td>
-                    <td><?= $o['nombre_cliente'] ?></td>
-                    <td><?= date("Y-m-d H:i", strtotime($o['fecha_anulacion'])) ?></td>
-                    <td><?= $o['motivo'] ?></td>
-                    <td class="acciones-cell">
-                        <button type="button" class="btn-action view">👁️</button>
-                        <button type="button" class="btn-action restore" data-orden="<?= $o['numero_orden'] ?>">↩️</button>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?= $o['numero_orden'] ?></td>
+                        <td><?= $o['nombre_cliente'] ?></td>
+                        <td><?= date("Y-m-d H:i", strtotime($o['fecha_anulacion'])) ?></td>
+                        <td><?= $o['motivo'] ?></td>
+                        <td style="display:none;"><?= $o['comentarios'] ?></td> <!-- datos ocultos -->
+                        <td class="acciones-cell">
+                            <a href="revisar.php?orden=<?= $o['numero_orden'] ?>" class="btn-action view">Revisar</a>
+                            <button type="button" class="btn-action restore" onclick="window.location.href='restaurarorden.php?orden=<?= $o['numero_orden'] ?>'">↩Restaurar</button>
+                        </td>
+                    </tr>
                 <?php endwhile; ?>
                 </tbody>
             </table>
         </section>
-
-        <!-- GESTIONAR ANULACIÓN -->
-        <section id="section-gestion" class="tab-content">
-            <div class="registro-clientes-tex">
-                <div class="titulo-clientes-registro">
-                    <h1>Gestionar Anulación</h1>
-                    <p>Módulo Celestial Stereo — Anuladas</p>
-                </div>
-            </div>
-
-            <form class="form-registro" method="POST" action="funciones/gestion_anulacion.php">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>ID DE ORDEN</label>
-                        <input type="number" name="numero_orden" placeholder="001" required>
-                    </div>
-                    <div class="form-group">
-                        <label>MOTIVO DE ANULACIÓN</label>
-                        <input type="text" name="motivo" value="Por revisar" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label>COMENTARIOS</label>
-                        <textarea name="comentarios" placeholder="Detalles adicionales..." rows="3"></textarea>
-                    </div>
-                </div>
-                <button type="submit" class="btn-save">ANULAR ORDEN</button>
-                <button type="reset" class="btn-limpiar">LIMPIAR</button>
-            </form>
-        </section>
     </div>
 </main>
 
-<script src="../js/anuladas.js"></script>
+<script src="js/anuladas.js"></script>
 </body>
 </html>

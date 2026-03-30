@@ -1,0 +1,519 @@
+/* ================= FACTURA ================= */
+.factura-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.factura-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--gold);
+}
+
+.factura-header h1 {
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.factura-header p {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.factura-card {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.factura-empresa {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.empresa-info h2 {
+    color: var(--gold);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.empresa-info p {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 0.25rem 0;
+}
+
+.factura-numero {
+    text-align: right;
+}
+
+.factura-numero .numero {
+    font-size: 1.5rem;
+    color: var(--gold);
+    font-weight: bold;
+}
+
+.factura-numero .fecha {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.cliente-info {
+    background: rgba(201, 168, 76, 0.08);
+    border-left: 4px solid var(--gold);
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+}
+
+.cliente-info h3 {
+    color: var(--gold);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cliente-info p {
+    color: var(--white);
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+}
+
+.factura-detalle {
+    margin-bottom: 2rem;
+}
+
+.detalle-tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.detalle-tabla th {
+    text-align: left;
+    padding: 12px;
+    background: rgba(201, 168, 76, 0.1);
+    color: var(--gold);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--gold);
+}
+
+.detalle-tabla td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--white);
+    font-size: 0.9rem;
+}
+
+.detalle-tabla td:last-child {
+    text-align: right;
+}
+
+.detalle-tabla th:last-child {
+    text-align: right;
+}
+
+.factura-totales {
+    margin-top: 2rem;
+    text-align: right;
+}
+
+.total-line {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--border);
+}
+
+.total-line.total {
+    border-top: 2px solid var(--gold);
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+}
+
+.total-line .label {
+    color: var(--muted);
+    font-weight: 600;
+    min-width: 150px;
+    text-align: right;
+}
+
+.total-line .value {
+    color: var(--white);
+    font-weight: 600;
+    min-width: 150px;
+    text-align: right;
+}
+
+.total-line.total .label,
+.total-line.total .value {
+    color: var(--gold);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.factura-letras {
+    background: rgba(201, 168, 76, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    border: 1px dashed var(--border);
+}
+
+.factura-letras p {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.factura-letras strong {
+    color: var(--gold);
+}
+
+.factura-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.footer-notas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.nota {
+    background: rgba(201, 168, 76, 0.05);
+    padding: 0.8rem;
+    border-radius: 8px;
+}
+
+.nota h4 {
+    color: var(--gold);
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nota p {
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.firma {
+    margin-top: 2rem;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.firma-linea {
+    margin-top: 2rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+    display: inline-block;
+    min-width: 250px;
+}
+
+.firma-linea p {
+    color: var(--muted);
+    font-size: 0.75rem;
+    margin: 0;
+}
+
+/* ================= CERTIFICACIÓN ================= */
+.certificacion-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.certificacion-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--gold);
+}
+
+.certificacion-header h1 {
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.certificacion-header p {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.certificacion-card {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.certificacion-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.info-group {
+    margin-bottom: 1rem;
+}
+
+.info-group label {
+    display: block;
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.info-group .info-value {
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.info-group.full-width {
+    grid-column: span 2;
+}
+
+.separator {
+    height: 1px;
+    background: var(--border);
+    margin: 1.5rem 0;
+}
+
+.certificacion-footer {
+    background: rgba(201, 168, 76, 0.1);
+    border-left: 4px solid var(--gold);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.certificacion-footer p {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* ================= BOTONES COMPARTIDOS ================= */
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-regresar {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--white);
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-regresar:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.btn-imprimir {
+    background: var(--gold);
+    border: none;
+    color: var(--navy-mid);
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-imprimir:hover {
+    background: #e8cc7e;
+    transform: translateY(-2px);
+}
+
+/* ================= ESTILOS PARA IMPRESIÓN (COMPARTIDOS) ================= */
+@media print {
+    header, nav, .button-group, .header-actions, .boton-salir {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .main-card {
+        background: white;
+        border: none;
+        padding: 0;
+    }
+    
+    /* Estilos para factura en impresión */
+    .factura-card {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 1rem;
+    }
+    
+    .empresa-info h2, .factura-numero .numero {
+        color: #c9a84c;
+    }
+    
+    .empresa-info p {
+        color: #666;
+    }
+    
+    .cliente-info {
+        background: #f9f9f9;
+        border-left-color: #c9a84c;
+    }
+    
+    .cliente-info p {
+        color: #333;
+    }
+    
+    .detalle-tabla td {
+        color: #333;
+    }
+    
+    .total-line .value {
+        color: #333;
+    }
+    
+    .total-line.total .label,
+    .total-line.total .value {
+        color: #c9a84c;
+    }
+    
+    .nota {
+        background: #f9f9f9;
+    }
+    
+    .nota p {
+        color: #666;
+    }
+    
+    .factura-letras {
+        background: #f9f9f9;
+    }
+    
+    /* Estilos para certificación en impresión */
+    .certificacion-card {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 1rem;
+    }
+    
+    .info-group .info-value {
+        color: black;
+    }
+    
+    .certificacion-header h1 {
+        color: #c9a84c;
+    }
+    
+    .separator {
+        background: #ddd;
+    }
+    
+    .certificacion-footer {
+        background: #f5f5f5;
+        border-left-color: #c9a84c;
+    }
+    
+    .certificacion-footer p {
+        color: #666;
+    }
+}
+
+/* ================= RESPONSIVE PARA FACTURA ================= */
+@media (max-width: 768px) {
+    .factura-empresa {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .factura-numero {
+        text-align: left;
+    }
+    
+    .footer-notas {
+        grid-template-columns: 1fr;
+    }
+    
+    .factura-card {
+        padding: 1rem;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .btn-regresar, .btn-imprimir {
+        text-align: center;
+    }
+    
+    .detalle-tabla {
+        font-size: 0.8rem;
+    }
+    
+    .detalle-tabla th,
+    .detalle-tabla td {
+        padding: 8px;
+    }
+}
+
+/* ================= RESPONSIVE PARA CERTIFICACIÓN ================= */
+@media (max-width: 768px) {
+    .certificacion-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-group.full-width {
+        grid-column: span 1;
+    }
+    
+    .certificacion-card {
+        padding: 1rem;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .btn-regresar, .btn-imprimir {
+        text-align: center;
+    }
+}
