@@ -47,20 +47,42 @@ $stmt->close();
     <div class="topbar-brand">
         🎙 Celestial <span>104.1 FM</span>
     </div>
-    <nav>
+    <nav> 
         <ul>
-            <li><a href="index.php">DASHBOARD</a></li>
+            <li><a href="index.php" class="active-link">DASHBOARD</a></li>
             <li><a href="clientes.php">CLIENTES</a></li>
             <li><a href="ordenes.php">ÓRDENES</a></li>
             <li><a href="anuladas.php">ANULADAS</a></li>
-            <li><a href="confirmacion.php">CONFIRMACIÓN</a></li>
-            <li><a href="administracion.php">ADMINISTRACIÓN</a></li>
+
+            <?php if(isset($_SESSION['usuario']) && 
+                    ($_SESSION['usuario']['rol'] === 'admin' || $_SESSION['usuario']['rol'] === 'superadmin')): ?>
+                
+                <li><a href="confirmacion.php">CONFIRMACIÓN</a></li>
+                <li><a href="administracion.php">ADMINISTRACIÓN</a></li>
+
+            <?php endif; ?>
         </ul>
     </nav>
+
     <div class="header-actions">
-        <div class="admin-status is-active">
+        <div class="admin-status is-active" aria-label="Estado del usuario">
             <span class="status-dot"></span>
-            <span><?= $_SESSION['usuario']['nombre'] ?></span>
+            <span>
+                <?php 
+                // Mostrar nombre y rol del usuario logueado
+                if(isset($_SESSION['usuario'])) {
+                    $nombre = $_SESSION['usuario']['nombre'] ?? 'Usuario';
+                    $rol = $_SESSION['usuario']['rol'] ?? 'usuario';
+                    
+                    // Capitalizar el rol para mostrarlo bonito
+                    $rolMostrar = ucfirst($rol);
+                    
+                    echo htmlspecialchars($nombre) . ' (' . htmlspecialchars($rolMostrar) . ')';
+                } else {
+                    echo 'Invitado';
+                }
+                ?>
+            </span>
         </div>
         <div class="boton-salir">
             <button><a href="funciones/logout.php">Salir</a></button>
