@@ -32,6 +32,21 @@ if (!$usuario) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $rol = $_POST['rol'];
+    
+    // Normalizar el rol
+    $rol = strtolower(trim($rol));
+    
+    // Lista de roles válidos según tu ENUM
+    $rolesValidos = ['user', 'admin', 'superadmin'];
+    
+    // Validar que el rol sea válido
+    if (!in_array($rol, $rolesValidos)) {
+        echo "<script>
+            alert('Rol no válido. Los roles permitidos son: user, admin, superadmin');
+            window.location.href='editarusuario.php?id=$id';
+        </script>";
+        exit();
+    }
 
     // 🚨 PROTECCIÓN: evitar modificar superadmin
     if ($usuario['rol'] === 'superadmin') {
@@ -42,20 +57,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    $stmt = mysqli_prepare($conexionBd, 
-        "UPDATE usuarios SET rol=? WHERE id=?"
-    );
-
+    $stmt = mysqli_prepare($conexionBd, "UPDATE usuarios SET rol = ? WHERE id = ?");
+    
+    if (!$stmt) {
+        die("Error en la preparación: " . mysqli_error($conexionBd));
+    }
+    
     mysqli_stmt_bind_param($stmt, "si", $rol, $id);
 
     if (mysqli_stmt_execute($stmt)) {
+        $rolMostrar = ($rol == 'user') ? 'Usuario' : ucfirst($rol);
         echo "<script>
-            alert('Rol actualizado correctamente');
+            alert('Rol actualizado correctamente a: " . $rolMostrar . "');
             window.location.href='administracion.php';
         </script>";
         exit();
     } else {
-        echo "Error al actualizar";
+        $error = mysqli_stmt_error($stmt);
+        echo "<script>
+            alert('Error al actualizar: " . addslashes($error) . "');
+            window.location.href='administracion.php';
+        </script>";
+        exit();
     }
 }
 ?>
@@ -68,6 +91,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="icon" type="image/avif" href="img/logo.avif">
     <title>Editar usuario</title>
     <link rel="stylesheet" href="css/styleLogin.css">
+    <style>
+        .info-message {
+            color: var(--gold);
+            background: rgba(201, 168, 76, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        .warning-message {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -77,6 +120,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="login-text">Stereo 104.1 FM · Gestión de usuarios</div>
         <h2>Editar usuario</h2>
 
+        <?php if ($usuario['rol'] === 'superadmin'): ?>
+            <div class="warning-message">
+                ⚠️ Este usuario es SUPERADMIN y no puede ser modificado
+            </div>
+        <?php endif; ?>
+
         <form method="POST">
 
             <div class="input-group">
@@ -85,14 +134,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="input-group">
-                <label>Rol</label>
-                <select name="rol">
-                    <option value="usuario" <?php if($usuario['rol']==="usuario") echo "selected"; ?>>Usuario</option>
-                    <option value="admin" <?php if($usuario['rol']==="admin") echo "selected"; ?>>Admin</option>
-                </select>
+                <label>Correo</label>
+                <input type="text" value="<?php echo htmlspecialchars($usuario['correo']); ?>" disabled>
             </div>
 
-            <button type="submit" class="btn-ingresar">Guardar cambios</button>
+            <div class="input-group">
+                <label>Rol actual: <strong>
+                    <?php 
+                    if($usuario['rol'] == 'user') echo 'Usuario';
+                    elseif($usuario['rol'] == 'admin') echo 'Admin';
+                    elseif($usuario['rol'] == 'superadmin') echo 'Superadmin';
+                    ?>
+                </strong></label>
+                <select name="rol" <?php echo ($usuario['rol'] === 'superadmin') ? 'disabled' : ''; ?>>
+                    <option value="user" <?php if($usuario['rol'] == "user") echo "selected"; ?>>Usuario</option>
+                    <option value="admin" <?php if($usuario['rol'] == "admin") echo "selected"; ?>>Admin</option>
+                </select>
+                <?php if ($usuario['rol'] === 'superadmin'): ?>
+                    <small style="color: #ff6b6b; display: block; margin-top: 5px;">
+                        Los superadministradores no pueden ser modificados
+                    </small>
+                <?php endif; ?>
+            </div>
+
+            <?php if ($usuario['rol'] !== 'superadmin'): ?>
+                <button type="submit" class="btn-ingresar">Guardar cambios</button>
+            <?php endif; ?>
             <button type="button" class="btn-crear" onclick="window.location.href='administracion.php'">Regresar</button>
 
         </form>
